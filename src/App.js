@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getClasses } from "./redux/apiRequests";
+import JoinedClassesList from "./components/JoinedClassesList";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   getClasses(dispatch);
+  // }, [dispatch]);
+  // const classData = useSelector(
+  //   (state) => state.joinedClasses.allClasses.classes
+  // );
+  // console.log(classData);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter className="App">
+      <h1>Hello</h1>
+      <Routes>
+        <Route path="/" element={<JoinedClassesList />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
