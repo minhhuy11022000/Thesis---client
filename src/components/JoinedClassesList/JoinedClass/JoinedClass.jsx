@@ -16,9 +16,9 @@ const JoinedClasses = ({ classData }) => {
                 <div className="joined__imgWrapper" />
                 <div className="joined__image" />
                 <div className="joined__content">
-                    <section className="joined__title" href="">
+                    <Link to={`${classData._id}`} className="joined__title" href="">
                         <h2>{classData.className}</h2>
-                    </section>
+                    </Link>
                     <p className="joined__section">{classData.section}</p>
                     <p className="joined__room">{classData.room}</p>
                 </div>

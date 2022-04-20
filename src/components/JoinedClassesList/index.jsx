@@ -2,17 +2,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getClasses } from "../../redux/apiRequests";
 import JoinedClass from "./JoinedClass/JoinedClass";
+import { Link } from "react-router-dom";
 
 const JoinedClassesList = () => {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        getClasses(dispatch);
-    }, [dispatch]);
-
     const classData = useSelector(
         (state) => state.joinedClasses.allClasses.classes
     );
+
+    useEffect(() => {
+        getClasses(dispatch);
+    }, [dispatch, classData]);
+
+
     return (
         <ul className="joined">
             {classData.map((joinedClass) => {
