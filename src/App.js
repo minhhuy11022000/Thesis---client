@@ -1,9 +1,13 @@
 import "./App.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getClasses } from "./redux/apiRequests";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import { getClasses } from "./redux/apiRequests";
 import JoinedClassesList from "./components/JoinedClassesList";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
+import MainPage from "./components/Mainpage/Mainpage";
+import ClassPage from "./components/ClassPage/ClassPage";
+import QuestionPage from "./components/QuestionPage/QuestionPage";
 
 function App() {
   // const dispatch = useDispatch();
@@ -16,9 +20,13 @@ function App() {
   // console.log(classData);
   return (
     <BrowserRouter className="App">
-      <h1>Hello</h1>
+      <NavBar />
+
       <Routes>
-        <Route path="/" element={<JoinedClassesList />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/classes" element={<JoinedClassesList />} />
+        <Route path="/classes/:id" element={<ClassPage />} />
+        <Route path="/questions" element={<QuestionPage />} />
       </Routes>
     </BrowserRouter>
   );
