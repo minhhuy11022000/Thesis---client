@@ -13,18 +13,19 @@ const JoinedClassesList = () => {
 
     useEffect(() => {
         getClasses(dispatch);
-    }, [dispatch, classData]);
+    }, [dispatch]);
 
 
     return (
-        <ul className="joined">
-            {classData.map((joinedClass) => {
-                return (
-                    <JoinedClass key={joinedClass._id} classData={joinedClass} />
-                );
-            })}
-        </ul>
-        // <h1>This is JoinClassesList</h1>
+        <div>
+            <ul className="joined">
+                {classData.map((joinedClass) => {
+                    return (
+                        <JoinedClass key={joinedClass._id} classData={joinedClass} />
+                    );
+                })}
+            </ul>
+        </div>
     );
 }
 

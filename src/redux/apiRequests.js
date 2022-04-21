@@ -4,6 +4,8 @@ import {
   getJoinedClassesSuccess,
   getJoinedClassesError,
   getJoinedClassSuccess,
+  getJoinedClassStart,
+  getJoinedClassError,
 } from "./joinedClassesSlice";
 
 export const getClasses = async (dispatch) => {
@@ -17,13 +19,13 @@ export const getClasses = async (dispatch) => {
 };
 
 export const getClass = async (id, dispatch) => {
+  dispatch(getJoinedClassStart());
   try {
     const url = `/classes/` + id;
-    // console.log(url);
     const res = await axios.get(url);
     dispatch(getJoinedClassSuccess(res.data));
     console.log(res.data);
   } catch (err) {
-    console.log(err);
+    dispatch(getJoinedClassError());
   }
 };

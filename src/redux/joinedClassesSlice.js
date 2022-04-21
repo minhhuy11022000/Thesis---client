@@ -7,6 +7,7 @@ export const joinedClassesSlice = createSlice({
       classes: [],
       pending: false,
       error: false,
+      selectedClass: {},
     },
   },
   reducers: {
@@ -20,9 +21,19 @@ export const joinedClassesSlice = createSlice({
     getJoinedClassesSuccess: (state, action) => {
       state.allClasses.classes = action.payload;
       state.allClasses.pending = false;
+      state.allClasses.error = false;
+    },
+    getJoinedClassStart: (state) => {
+      state.allClasses.pending = true;
+    },
+    getJoinedClassError: (state) => {
+      state.allClasses.error = true;
+      state.allClasses.pending = false;
     },
     getJoinedClassSuccess: (state, action) => {
-      state.allClasses.classes = action.payload;
+      state.allClasses.selectedClass = action.payload;
+      state.allClasses.error = false;
+      state.allClasses.pending = false;
     },
   },
 });
@@ -31,6 +42,8 @@ export const {
   getJoinedClassesError,
   getJoinedClassesStart,
   getJoinedClassesSuccess,
+  getJoinedClassStart,
+  getJoinedClassError,
   getJoinedClassSuccess,
 } = joinedClassesSlice.actions;
 export default joinedClassesSlice.reducer;

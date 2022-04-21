@@ -14,15 +14,19 @@ const ClassPage = () => {
         getClass(id, dispatch);
     }, [dispatch, id]);
 
-    const classData = useSelector(state => state.joinedClasses.allClasses.classes);
+    const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
 
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState("");
+
+    const pending = useSelector(state => state.joinedClasses.pending);
+    // const error = useSelector(state => state.allClasses.error);
 
     return (
         // <div>
         //     This is ClassPage of class {id}
         // </div>
+
         <div className="main">
             <div className="main__wrapper">
                 <div className="main__content">
