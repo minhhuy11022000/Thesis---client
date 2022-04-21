@@ -1,7 +1,13 @@
 .mainpage__container {
     width: fit-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
 
     .link__child{
+        width: 40rem;
+        text-align: center;
         display: inline-block;
         border-radius: 10px;
         margin: 10px;
@@ -9,5 +15,9 @@
         text-decoration: none;
         color: white;
         background-color: #1976d2;
+    }
+    
+    .link__child:hover {
+        background-color: #358fe8;
     }
 }

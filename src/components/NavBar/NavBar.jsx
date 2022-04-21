@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import './NavBar.scss';
 
 export default function NavBar() {
     return (
@@ -23,7 +24,7 @@ export default function NavBar() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <Link to="/">
+                        <Link className='link__element' to="/">
                             Quizzatt
                         </Link>
                     </Typography>
