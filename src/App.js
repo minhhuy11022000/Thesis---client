@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./components/Mainpage/Mainpage";
 import ClassPage from "./components/ClassPage/ClassPage";
 import QuestionPage from "./components/QuestionPage/QuestionPage";
+import QuizPage from "./components/QuizPage/QuizPage";
 
 function App() {
   // const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
         <Route path="/classes" element={<JoinedClassesList />} />
         <Route path="/classes/:id" element={<ClassPage />} />
         <Route path="/questions" element={<QuestionPage />} />
+        <Route path="/result" element={<QuizPage />} />
       </Routes>
     </BrowserRouter>
   );
