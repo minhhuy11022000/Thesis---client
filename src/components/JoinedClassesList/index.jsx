@@ -4,6 +4,7 @@ import { getClasses } from "../../redux/apiRequests";
 import JoinedClass from "./JoinedClass/JoinedClass";
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
 const JoinedClassesList = () => {
     const dispatch = useDispatch();
@@ -18,20 +19,22 @@ const JoinedClassesList = () => {
         getClasses(dispatch);
     }, [dispatch]);
 
+    if (pending) {
+        return (
+            <Box textAlign='center' >
+                <CircularProgress color='inherit' />
+            </Box >
+        )
+    }
 
     return (
-        <div>
-            {pending ? <CircularProgress color="inherit" /> : (
-
-                <ul className="joined">
-                    {classData.map((joinedClass) => {
-                        return (
-                            <JoinedClass key={joinedClass._id} classData={joinedClass} />
-                        );
-                    })}
-                </ul>
-            )}
-        </div>
+        <ul className="joined">
+            {classData.map((joinedClass) => {
+                return (
+                    <JoinedClass key={joinedClass._id} classData={joinedClass} />
+                );
+            })}
+        </ul>
     );
 }
 

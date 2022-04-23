@@ -5,6 +5,8 @@ import { getClass } from "../../redux/apiRequests";
 import "./ClassPage.scss";
 import { TextField, Button, Avatar, CircularProgress } from "@mui/material";
 import { useState } from "react";
+import { getAllQuizzes } from "../../api/QuizRequest";
+import QuizzesList from "../QuizzesList/QuizzesList";
 
 const ClassPage = () => {
     const { id } = useParams();
@@ -14,7 +16,13 @@ const ClassPage = () => {
         getClass(id, dispatch);
     }, [dispatch, id]);
 
+    useEffect(() => {
+        getAllQuizzes(dispatch);
+    }, [dispatch]);
+
     const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
+    const quizzesData = useSelector(state => state.quizzes.allQuizzes);
+    console.log(quizzesData);
 
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -91,6 +99,9 @@ const ClassPage = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="main__quizzes">
+                        <QuizzesList quizzesData={quizzesData} />
                     </div>
                 </div>
             )}
