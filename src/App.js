@@ -28,7 +28,7 @@ function App() {
         <Route path="/classes" element={<JoinedClassesList />} />
         <Route path="/classes/:id" element={<ClassPage />} />
         <Route path="/questions" element={<QuestionPage />} />
-        <Route path="/result" element={<QuizPage />} />
+        <Route path="/quizzes/:id" element={<QuizPage />} />
       </Routes>
     </BrowserRouter>
   );

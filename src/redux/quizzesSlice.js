@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const quizzesSlice = createSlice({
-  name: "questions",
+  name: "quizzes",
   initialState: {
-    quizzes: [],
+    allQuizzes: [],
     pending: false,
     error: false,
     selectedQuiz: {},
@@ -17,7 +17,7 @@ export const quizzesSlice = createSlice({
       state.pending = false;
     },
     getAllQuizzesSuccess: (state, action) => {
-      state.quizzes = action.payload;
+      state.allQuizzes = action.payload;
       state.pending = false;
       state.error = false;
     },
