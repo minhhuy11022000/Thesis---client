@@ -29,14 +29,13 @@ export const getClass = async (id, dispatch) => {
     const url = `/classes/` + id;
     const res = await axios.get(url);
     dispatch(getJoinedClassSuccess(res.data));
-    console.log(res.data);
   } catch (err) {
     dispatch(getJoinedClassError());
   }
 };
 
 export const getAllQuestions = async (dispatch) => {
-  dispatch(getAllQuestionsStart);
+  dispatch(getAllQuestionsStart());
   try {
     const res = await axios.get(`/questions`);
     dispatch(getAllQuestionsSuccess(res.data));
