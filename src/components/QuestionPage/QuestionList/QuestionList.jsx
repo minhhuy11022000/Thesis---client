@@ -6,13 +6,26 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import questions from '../../../data/Questions';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { getAllQuestions } from '../../../redux/apiRequests';
+import { Typography } from '@mui/material';
+// import questions from '../../../data/Questions';
 
 const QuestionList = () => {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = useState(true);
+
+    const dispatch = useDispatch();
+
     const handleClick = () => {
         setOpen(!open);
     };
+
+    useEffect(() => {
+        getAllQuestions(dispatch);
+    }, [dispatch]);
+
+    const questions = useSelector(state => state.questions.questionsList);
 
     return (
         <List
@@ -28,16 +41,17 @@ const QuestionList = () => {
         >
             {questions.map(question => {
                 return (
-                    <div key={question.id}>
+                    <div key={question._id}>
                         <ListItemButton onClick={handleClick}>
                             <ListItemText primary={question.question_text} />
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
+                        <Typography>{question.difficulty_level}</Typography>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 {question.question_possibilities.map(item => {
                                     return (
-                                        <ListItemButton sx={{ pl: 4 }}>
+                                        <ListItemButton key={item._id} sx={{ pl: 4 }}>
                                             <ListItemText primary={item.answer} />
                                         </ListItemButton>
                                     )

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const questionsSlice = createSlice({
   name: "questions",
   initialState: {
-    questions: [],
+    questionsList: [],
     pending: false,
     error: false,
   },
@@ -16,9 +16,12 @@ export const questionsSlice = createSlice({
       state.pending = false;
     },
     getAllQuestionsSuccess: (state, action) => {
-      state.questions = action.payload;
+      state.questionsList = action.payload;
       state.pending = false;
       state.error = false;
+    },
+    createNewQuestion: (state, action) => {
+      state.questionsList = [...state.questionsList, action.payload];
     },
   },
 });
@@ -27,6 +30,7 @@ export const {
   getAllQuestionsStart,
   getAllQuestionsSuccess,
   getAllQuestionsError,
+  createNewQuestion,
 } = questionsSlice.actions;
 
 export default questionsSlice.reducer;

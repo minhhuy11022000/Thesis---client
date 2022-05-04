@@ -1,7 +1,9 @@
 .question__page__container {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    .link__child{
+    max-width: 100%;
+
+    .link__child {
         width: 20rem;
         text-align: center;
         display: inline-block;
@@ -12,7 +14,7 @@
         color: white;
         background-color: #1976d2;
     }
-    
+
     .link__child:hover {
         background-color: #358fe8;
     }
@@ -20,5 +22,15 @@
     .child__field {
         width: 100%;
         text-align: center;
+    }
+
+    .question__page__right {
+        margin: 10px;
+
+        .question__page__right__btn {
+            position: relative;
+            top: 0px;
+            left: 800px;
+        }
     }
 }
