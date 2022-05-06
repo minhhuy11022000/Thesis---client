@@ -2,7 +2,6 @@ import QuestionList from "./QuestionList/QuestionList";
 import './QuestionPage.scss';
 import { Link } from 'react-router-dom';
 import SelectField from "../SelectField/SelectField";
-import AddIcon from '@mui/icons-material/Add';
 import { useState } from "react";
 import QuestionModal from "../QuestionModal/QuestionModal";
 import Button from '@mui/material/Button';

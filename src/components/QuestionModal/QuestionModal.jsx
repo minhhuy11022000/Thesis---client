@@ -13,7 +13,6 @@ import { TextField } from '@mui/material';
 import { useState } from 'react';
 import './QuestionModal.scss';
 import { useDispatch } from 'react-redux';
-import { createNewQuestion } from '../../redux/questionsSlice';
 import { addNewQuestion } from '../../api/QuestionRequests';
 
 const style = {

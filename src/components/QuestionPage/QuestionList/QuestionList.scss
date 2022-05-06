@@ -1,3 +1,14 @@
 .list__question {
     padding: auto;
+
+    .list__question__text {
+        font-weight: 800;
+    }
+
+    .list__question__diffLevel {
+        display: inline-block;
+        border-radius: 10px;
+        background-color: aqua;
+        padding: 10px;
+    }
 }

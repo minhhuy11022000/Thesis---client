@@ -8,10 +8,10 @@ import {
   getQuizSuccess,
 } from "../redux/quizzesSlice";
 
-export const getAllQuizzes = async (dispatch) => {
+export const getAllQuizzes = async (id, dispatch) => {
   dispatch(getAllQuizzesStart());
   try {
-    const res = await axios.get(`/quizzes`);
+    const res = await axios.get(`/quizzes/class/${id}`);
     dispatch(getAllQuizzesSuccess(res.data));
   } catch (err) {
     dispatch(getAllQuizzesError());
@@ -21,10 +21,8 @@ export const getAllQuizzes = async (dispatch) => {
 export const getQuiz = async (id, dispatch) => {
   dispatch(getQuizStart());
   try {
-    const url = `/quizzes/` + id;
-    const res = await axios.get(url);
+    const res = await axios.get(`/quizzes/${id}`);
     dispatch(getQuizSuccess(res.data));
-    console.log(res.data);
   } catch (err) {
     dispatch(getQuizError());
   }
