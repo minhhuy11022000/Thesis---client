@@ -9,7 +9,8 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllQuestions } from '../../../redux/apiRequests';
-import { Typography } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
+import './QuestionList.scss';
 // import questions from '../../../data/Questions';
 
 const QuestionList = () => {
@@ -43,10 +44,10 @@ const QuestionList = () => {
                 return (
                     <div key={question._id}>
                         <ListItemButton onClick={handleClick}>
-                            <ListItemText primary={question.question_text} />
+                            <ListItemText className='list__question__text' primary={question.question_text} />
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
-                        <Typography>{question.difficulty_level}</Typography>
+                        <Typography className='list__question__diffLevel'>{question.difficulty_level}</Typography>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 {question.question_possibilities.map(item => {
@@ -56,8 +57,13 @@ const QuestionList = () => {
                                         </ListItemButton>
                                     )
                                 })}
+                                <ListItemButton>
+                                    <Typography variant='caption'>Correct answer:</Typography>
+                                    <ListItemText primary={question.correct_answer} />
+                                </ListItemButton>
                             </List>
                         </Collapse>
+                        <Divider />
                     </div>
                 )
             })}
