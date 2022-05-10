@@ -9,6 +9,8 @@ import MainPage from "./components/Mainpage/Mainpage";
 import ClassPage from "./components/ClassPage/ClassPage";
 import QuestionPage from "./components/QuestionPage/QuestionPage";
 import QuizPage from "./components/QuizPage/QuizPage";
+import StudentRecord from "./components/StudentRecord/StudentRecord";
+import ResultPage from "./components/ResultPage/ResultPage";
 
 function App() {
   // const dispatch = useDispatch();
@@ -29,6 +31,8 @@ function App() {
         <Route path="/classes/:id" element={<ClassPage />} />
         <Route path="/questions" element={<QuestionPage />} />
         <Route path="/quizzes/:id" element={<QuizPage />} />
+        <Route path="/result/*" element={<ResultPage />} />
+        {/* <Route path="/result/:subject" element={<StudentRecord />} /> */}
       </Routes>
     </BrowserRouter>
   );

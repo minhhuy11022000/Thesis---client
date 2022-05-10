@@ -3,30 +3,32 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { useNavigate } from 'react-router-dom';
 
-const SelectField = () => {
-    const [subject, setSubject] = React.useState('');
+const SelectTypeField = ({ type, setType }) => {
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
-        setSubject(event.target.value);
+        setType(event.target.value);
+        navigate(`${event.target.value}`);
     };
 
     return (
         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="demo-select-small">Subject</InputLabel>
+            <InputLabel id="demo-select-small">Select Type</InputLabel>
             <Select
                 labelId="demo-select-small"
                 id="demo-select-small"
-                value={subject}
-                label="Age"
+                value={type}
+                label="Type"
                 onChange={handleChange}
             >
-                <MenuItem value="OOP">OOP</MenuItem>
-                <MenuItem value="OOAD">OOAD</MenuItem>
-                <MenuItem value="WAD">WAD</MenuItem>
+                <MenuItem value="Table">Table</MenuItem>
+                <MenuItem value="BarChart">Bar Chart</MenuItem>
+                <MenuItem value="PieChart">Pie Chart</MenuItem>
             </Select>
         </FormControl>
     );
 }
 
-export default SelectField;
+export default SelectTypeField;
