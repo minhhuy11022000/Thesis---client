@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { getClass } from "../../redux/apiRequests";
+import { getClass } from "../../api/ClassRequests";
 import "./ClassPage.scss";
 import { TextField, Button, Avatar, CircularProgress, Box } from "@mui/material";
 import { useState } from "react";
@@ -111,7 +111,7 @@ const ClassPage = () => {
                             children="Add new Quiz"
                             onClick={() => setOpenQuizModal(!openQuizModal)}
                         />
-                        {openQuizModal && <QuizModal classCode={classData._id} openQuizModal={openQuizModal} setOpenQuizModal={setOpenQuizModal} />}
+                        {openQuizModal && <QuizModal openQuizModal={openQuizModal} setOpenQuizModal={setOpenQuizModal} />}
                     </div>
                     <div className="main__quizzes">
                         <QuizzesList quizzesData={quizzesData} />

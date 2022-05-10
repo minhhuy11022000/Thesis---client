@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getClasses } from "../../redux/apiRequests";
+import { getClasses } from "../../api/ClassRequests";
 import JoinedClass from "./JoinedClass/JoinedClass";
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from "react-router-dom";

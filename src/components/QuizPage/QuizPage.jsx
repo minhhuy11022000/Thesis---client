@@ -1,14 +1,17 @@
 import { Box, Button, Container, Typography, CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getQuiz } from "../../api/QuizRequest";
+import { submitStudentResult } from "../../api/ResultRequests";
 import questions from "../../data/Questions";
+import { increaseScore } from "../../redux/scoreSlice";
 
 const QuizPage = () => {
     const { id } = useParams();
     const [options, setOptions] = useState([]);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getQuiz(id, dispatch);
@@ -17,15 +20,33 @@ const QuizPage = () => {
 
     const quizPending = useSelector(state => state.quizzes.pending);
     const quizData = useSelector(state => state.quizzes.selectedQuiz);
+    const scoreData = useSelector(state => state.scores.score);
+    const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
+
     // console.log(quizData);
-    console.log((quizData.questions));
+    // console.log((quizData.questions));
+    console.log(scoreData);
 
     const [questionIndex, setQuestionIndex] = useState(0);
     // console.log(quizData.questions[questionIndex]);
 
-    const handleClickAnswer = () => {
+    const handleClickAnswer = (e) => {
+        const question = quizData.questions[questionIndex];
+        console.log(scoreData);
+        if (e.target.textContent === question.correct_answer) {
+            dispatch(increaseScore(scoreData + 1));
+        }
         if (questionIndex + 1 < quizData.questions.length) {
             setQuestionIndex(questionIndex + 1);
+        }
+        else {
+            navigate(`result`);
+            submitStudentResult({
+                class_name: classData.className,
+                subject: classData.subject,
+                quiz_name: quizData.quiz_name,
+                grade: scoreData * 10
+            })
         }
     }
 

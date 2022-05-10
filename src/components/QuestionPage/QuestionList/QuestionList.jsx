@@ -8,7 +8,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getAllQuestions } from '../../../redux/apiRequests';
+import { getAllQuestions } from '../../../api/QuestionRequests';
 import { Divider, Typography } from '@mui/material';
 import './QuestionList.scss';
 // import questions from '../../../data/Questions';

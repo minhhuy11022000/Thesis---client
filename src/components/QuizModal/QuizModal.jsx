@@ -11,9 +11,10 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addNewQuestion } from '../../api/QuestionRequests';
 import './QuizModal.scss';
+import { createQuiz } from '../../api/QuizRequest';
 
 const style = {
     position: 'absolute',
@@ -29,9 +30,24 @@ const style = {
     'overflow-y': 'scroll'
 };
 
-const QuizModal = ({ classCode, openQuizModal, setOpenQuizModal }) => {
+const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
+    const [quizName, setQuizName] = useState('');
+    const dispatch = useDispatch();
+    const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
+    console.log(classData)
 
     const handleCloseModal = () => {
+        setOpenQuizModal(false);
+    }
+
+    const handleSubmitQuiz = () => {
+        const quizInfo = {
+            quiz_name: quizName,
+            class_code: classData._id,
+            subject: classData.subject,
+        }
+        console.log(quizInfo)
+        createQuiz(quizInfo, dispatch);
         setOpenQuizModal(false);
     }
 
@@ -57,6 +73,8 @@ const QuizModal = ({ classCode, openQuizModal, setOpenQuizModal }) => {
                             className='form_element'
                             required
                             label="Quiz name"
+                            value={quizName}
+                            onChange={(e) => setQuizName(e.target.value)}
                         />
                         <TextField
                             className='form_element'
@@ -66,6 +84,7 @@ const QuizModal = ({ classCode, openQuizModal, setOpenQuizModal }) => {
                         <Button
                             className='form_element'
                             variant='contained'
+                            onClick={handleSubmitQuiz}
                         >
                             Create
                         </Button>

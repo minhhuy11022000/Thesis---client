@@ -6,6 +6,7 @@ import {
   getQuizError,
   getQuizStart,
   getQuizSuccess,
+  createNewQuiz,
 } from "../redux/quizzesSlice";
 
 export const getAllQuizzes = async (id, dispatch) => {
@@ -25,5 +26,14 @@ export const getQuiz = async (id, dispatch) => {
     dispatch(getQuizSuccess(res.data));
   } catch (err) {
     dispatch(getQuizError());
+  }
+};
+
+export const createQuiz = async (quizInfo, dispatch) => {
+  try {
+    const res = await axios.post(`/quizzes`, quizInfo);
+    dispatch(createNewQuiz(res.data));
+  } catch (err) {
+    console.log({ error: err });
   }
 };
