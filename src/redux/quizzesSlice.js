@@ -33,6 +33,9 @@ export const quizzesSlice = createSlice({
       state.pending = false;
       state.error = false;
     },
+    createNewQuiz: (state, action) => {
+      state.allQuizzes = [...state.allQuizzes, action.payload];
+    },
   },
 });
 
@@ -43,6 +46,7 @@ export const {
   getQuizStart,
   getQuizSuccess,
   getQuizError,
+  createNewQuiz,
 } = quizzesSlice.actions;
 
 export default quizzesSlice.reducer;
