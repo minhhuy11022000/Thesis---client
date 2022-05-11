@@ -35,8 +35,9 @@ const QuestionModal = ({ isModalOpen, setIsModalOpen }) => {
     const dispatch = useDispatch();
 
     const [diffLevel, setDiffLevel] = useState('Easy');
-    const [questionType, setQuestionType] = useState('');
+    const [questionType, setQuestionType] = useState('text');
     const [questionText, setQuestionText] = useState('');
+    const [subject, setSubject] = useState('');
     const [questionPoss1, setQuestionPoss1] = useState('');
     const [questionPoss2, setQuestionPoss2] = useState('');
     const [questionPoss3, setQuestionPoss3] = useState('');
@@ -56,6 +57,9 @@ const QuestionModal = ({ isModalOpen, setIsModalOpen }) => {
     }
     const handleQuestionText = (e) => {
         setQuestionText(e.target.value);
+    }
+    const handleSubject = (e) => {
+        setSubject(e.target.value);
     }
     const handleQuestionPoss1 = (e) => {
         setQuestionPoss1(e.target.value);
@@ -84,6 +88,7 @@ const QuestionModal = ({ isModalOpen, setIsModalOpen }) => {
         const newQuestion = {
             question_type: questionType,
             question_text: questionText,
+            subject: subject,
             difficulty_level: diffLevel,
             question_possibilities: solvedTempPoss,
             correct_answer: questionAnswer
@@ -123,6 +128,13 @@ const QuestionModal = ({ isModalOpen, setIsModalOpen }) => {
                             label="Question Text"
                             value={questionText}
                             onChange={handleQuestionText}
+                        />
+                        <TextField
+                            className='form_element'
+                            required
+                            label="Subject"
+                            value={subject}
+                            onChange={handleSubject}
                         />
                         <FormControl
                             sx={{ minWidth: 120 }}
