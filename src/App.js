@@ -31,7 +31,7 @@ function App() {
         <Route path="/classes/:id" element={<ClassPage />} />
         <Route path="/questions" element={<QuestionPage />} />
         <Route path="/quizzes/:id" element={<QuizPage />} />
-        <Route path="/result/*" element={<ResultPage />} />
+        <Route path="/results/*" element={<ResultPage />} />
         {/* <Route path="/result/:subject" element={<StudentRecord />} /> */}
       </Routes>
     </BrowserRouter>

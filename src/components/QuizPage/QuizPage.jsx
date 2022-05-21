@@ -9,7 +9,6 @@ import { increaseScore } from "../../redux/scoreSlice";
 
 const QuizPage = () => {
     const { id } = useParams();
-    const [options, setOptions] = useState([]);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -23,12 +22,9 @@ const QuizPage = () => {
     const scoreData = useSelector(state => state.scores.score);
     const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
 
-    // console.log(quizData);
-    // console.log((quizData.questions));
     console.log(scoreData);
 
     const [questionIndex, setQuestionIndex] = useState(0);
-    // console.log(quizData.questions[questionIndex]);
 
     const handleClickAnswer = (e) => {
         const question = quizData.questions[questionIndex];
@@ -42,10 +38,10 @@ const QuizPage = () => {
         else {
             navigate(`result`);
             submitStudentResult({
-                class_name: classData.className,
+                class_name: classData.class_name,
                 subject: classData.subject,
                 quiz_name: quizData.quiz_name,
-                grade: scoreData * 10
+                grade: scoreData * 20
             })
         }
     }

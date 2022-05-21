@@ -9,7 +9,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllQuestions } from '../../../api/QuestionRequests';
-import { Divider, Typography } from '@mui/material';
+import { Divider, Typography, Box, CircularProgress } from '@mui/material';
 import './QuestionList.scss';
 // import questions from '../../../data/Questions';
 
@@ -27,6 +27,15 @@ const QuestionList = () => {
     }, [dispatch]);
 
     const questions = useSelector(state => state.questions.questionsList);
+    const pendingQuestion = useSelector(state => state.questions.pending);
+
+    if (pendingQuestion) {
+        return (
+            <Box textAlign='center' >
+                <CircularProgress color='inherit' />
+            </Box >
+        )
+    }
 
     return (
         <List
@@ -47,8 +56,8 @@ const QuestionList = () => {
                             <ListItemText className='list__question__text' primary={question.question_text} />
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
-                        <Typography className='list__question__diffLevel'>{question.difficulty_level}</Typography>
                         <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Typography className='list__question__diffLevel'>{question.difficulty_level}</Typography>
                             <List component="div" disablePadding>
                                 {question.question_possibilities.map(item => {
                                     return (

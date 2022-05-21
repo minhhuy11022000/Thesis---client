@@ -6,11 +6,9 @@ import Select from '@mui/material/Select';
 import { useNavigate } from 'react-router-dom';
 
 const SelectTypeField = ({ type, setType }) => {
-    const navigate = useNavigate();
 
     const handleChange = (event) => {
         setType(event.target.value);
-        navigate(`${event.target.value}`);
     };
 
     return (
