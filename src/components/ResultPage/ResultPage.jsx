@@ -1,8 +1,8 @@
-import { Box, Button, CircularProgress } from '@mui/material';
+import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { getListScoreOfStudentBySubject } from '../../api/ResultRequests';
 import SelectTypeField from '../SelectTypeField/SelectTypeField';
 import StudentChart from '../StudentChart/StudentChart';

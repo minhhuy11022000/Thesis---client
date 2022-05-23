@@ -1,15 +1,17 @@
 import * as React from 'react';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import './NavBar.scss';
+import Logo from '../../assets/public/Logo-HCMIU.jpg';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function NavBar() {
+    const navigate = useNavigate();
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -21,7 +23,7 @@ export default function NavBar() {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                        <MenuIcon />
+                        <img className='image' src={Logo} alt="HCMIU" />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <Link className='link__element' to="/">
@@ -29,7 +31,8 @@ export default function NavBar() {
                         </Link>
                     </Typography>
 
-                    <Button color="inherit">Login</Button>
+                    <Typography color="inherit" onClick={() => navigate("/auth/login")}>Hi Ms. C</Typography>
+                    <Button color="inherit" onClick={() => navigate("/auth/logout")}><LogoutIcon /></Button>
                 </Toolbar>
             </AppBar>
         </Box>
