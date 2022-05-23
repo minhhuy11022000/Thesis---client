@@ -7,26 +7,32 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Box, CircularProgress } from '@mui/material';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
 
-function createData(name, quiz1, quiz2, quiz3, quiz4, quiz5) {
-    return { name, quiz1, quiz2, quiz3, quiz4, quiz5 };
-}
+// function createData(name, quiz1, quiz2, quiz3, quiz4, quiz5) {
+//     return { name, quiz1, quiz2, quiz3, quiz4, quiz5 };
+// }
 
-const rows = [
-    createData('ITITIU18011', 70, 60, 25, 80, 90, 100),
-    createData('ITITIU17012', 50, 55, 100, 70, 90, 40),
-    createData('ITITIU18199', 80, 85, 10, 60, 80, 50),
-    createData('ITITIU20121', 40, 15, 30, 80, 50, 50),
-    createData('ITITIU20001', 75, 20, 60, 80, 70, 80),
-];
+// const rows = [
+//     createData('ITITIU18011', 70, 60, 25, 80, 90, 100),
+//     createData('ITITIU17012', 50, 55, 100, 70, 90, 40),
+//     createData('ITITIU18199', 80, 85, 10, 60, 80, 50),
+//     createData('ITITIU20121', 40, 15, 30, 80, 50, 50),
+//     createData('ITITIU20001', 75, 20, 60, 80, 70, 80),
+// ];
 
 const StudentRecord = ({ listStudentScore }) => {
 
+    // const newList = listStudentScore.list_score.forEach(record => {
+    //     return {
+    //         ...record, record.results.quiz_name
+    //     }
+    // });
 
-    console.log(listStudentScore);
+    // console.log(newList);
+    // console.log("alo")
 
     const pendingRequestListScore = useSelector(state => state.results.pending);
 
@@ -43,16 +49,16 @@ const StudentRecord = ({ listStudentScore }) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>Student ID</TableCell>
-                        {listStudentScore.list_score[0].results.map(record => {
+                        {/* {listStudentScore.list_score[0].results.map(record => {
                             return (
                                 <TableCell key={record._id} align='right'>{record.quiz_name}</TableCell>
                             )
-                        })}
-                        {/* <TableCell align="right">Quiz 1</TableCell>
+                        })} */}
+                        <TableCell align="right">Quiz 1</TableCell>
                         <TableCell align="right">Quiz 2</TableCell>
                         <TableCell align="right">Quiz 3</TableCell>
                         <TableCell align="right">Quiz 4</TableCell>
-                        <TableCell align="right">Quiz 5</TableCell> */}
+                        <TableCell align="right">Quiz 5</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
