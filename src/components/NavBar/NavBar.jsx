@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import './NavBar.scss';
-import Logo from '../../assets/public/Logo-HCMIU.jpg';
+import Logo from '../../assets/public/IU_Logo.png';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function NavBar() {
