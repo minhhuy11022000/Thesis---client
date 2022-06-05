@@ -20,7 +20,8 @@ const QuizPage = () => {
     const quizPending = useSelector(state => state.quizzes.pending);
     const quizData = useSelector(state => state.quizzes.selectedQuiz);
     const scoreData = useSelector(state => state.scores.score);
-    const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
+    const classData = useSelector(state => state.joinedClasses.allClasses?.selectedClass);
+    const user = useSelector(state => state.auth.login?.currentUser);
 
     console.log(scoreData);
 
@@ -39,6 +40,7 @@ const QuizPage = () => {
             navigate(`result`);
             submitStudentResult({
                 class_name: classData.class_name,
+                student_id: user?.uni_id,
                 subject: classData.subject,
                 quiz_name: quizData.quiz_name,
                 grade: scoreData * 20

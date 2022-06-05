@@ -1,5 +1,15 @@
 import axios from "axios";
-import { loginStart, loginSuccess, loginFailed } from "../redux/authSlice";
+import {
+  loginStart,
+  loginSuccess,
+  loginFailed,
+  registerStart,
+  registerSuccess,
+  registerFailed,
+  logOutStart,
+  logOutSuccess,
+  logOutFailed,
+} from "../redux/authSlice";
 
 export const loginUser = async (user, dispatch, navigate) => {
   dispatch(loginStart());
@@ -9,5 +19,29 @@ export const loginUser = async (user, dispatch, navigate) => {
     navigate("/");
   } catch (err) {
     dispatch(loginFailed());
+  }
+};
+
+export const registerUser = async (user, dispatch, handleChange) => {
+  dispatch(registerStart());
+  try {
+    await axios.post("/auth/register", user);
+    dispatch(registerSuccess());
+    handleChange("event", "1");
+  } catch (err) {
+    dispatch(registerFailed());
+  }
+};
+
+export const logOut = async (dispatch, navigate, id, accesstoken, axiosJWT) => {
+  dispatch(logOutStart());
+  try {
+    await axiosJWT.post("/auth/logout", id, {
+      headers: { token: `Bearer ${accesstoken}` },
+    });
+    dispatch(logOutSuccess());
+    navigate("/auth/login");
+  } catch (err) {
+    dispatch(logOutFailed());
   }
 };

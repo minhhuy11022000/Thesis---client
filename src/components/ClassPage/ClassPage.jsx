@@ -22,14 +22,15 @@ const ClassPage = () => {
         getAllQuizzes(id, dispatch);
     }, [dispatch, id]);
 
-    const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
-    const quizzesData = useSelector(state => state.quizzes.allQuizzes);
+    const classData = useSelector(state => state.joinedClasses.allClasses?.selectedClass);
+    const quizzesData = useSelector(state => state.quizzes?.allQuizzes);
+    const pending = useSelector(state => state.joinedClasses.allClasses.pending);
+    const user = useSelector(state => state.auth.login?.currentUser);
 
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const [openQuizModal, setOpenQuizModal] = useState(false);
 
-    const pending = useSelector(state => state.joinedClasses.allClasses.pending);
     // const error = useSelector(state => state.allClasses.error);
 
     if (pending) {
@@ -106,11 +107,11 @@ const ClassPage = () => {
                 </div>
                 <div className="main__quizzes__container">
                     <div className="main__quizzes__btn">
-                        <Button
+                        {user?.isLecturer && <Button
                             variant="contained"
                             children="Add new Quiz"
                             onClick={() => setOpenQuizModal(!openQuizModal)}
-                        />
+                        />}
                         {openQuizModal && <QuizModal openQuizModal={openQuizModal} setOpenQuizModal={setOpenQuizModal} />}
                     </div>
                     <div className="main__quizzes">

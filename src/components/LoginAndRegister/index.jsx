@@ -1,9 +1,9 @@
-import { Tabs, Tab, Paper, Box } from '@mui/material';
+import { Tab, Paper, Box } from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+// import { Route, Routes, useNavigate } from 'react-router-dom';
 import LoginPage from './LoginPage/LoginPage';
 import RegisterPage from './RegisterPage/RegisterPage';
 
@@ -28,7 +28,7 @@ const LogInAndRegisterForm = () => {
                     </TabList>
                 </Box>
                 <TabPanel value="1"><LoginPage handleChange={handleChange} /></TabPanel>
-                <TabPanel value="2"><RegisterPage /></TabPanel>
+                <TabPanel value="2"><RegisterPage handleChange={handleChange} /></TabPanel>
             </TabContext>
         </Paper>
     );
