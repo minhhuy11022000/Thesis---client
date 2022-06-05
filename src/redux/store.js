@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import authSlice from "./authSlice";
 import joinedClassesSlice from "./joinedClassesSlice";
 import questionsSlice from "./questionsSlice";
 import quizzesSlice from "./quizzesSlice";
@@ -12,5 +13,6 @@ export default configureStore({
     quizzes: quizzesSlice,
     results: resultsSlice,
     scores: scoreSlice,
+    auth: authSlice,
   },
 });
