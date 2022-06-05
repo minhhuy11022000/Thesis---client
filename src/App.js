@@ -1,9 +1,9 @@
 import "./App.scss";
-// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { useEffect } from "react";
 // import { getClasses } from "./redux/apiRequests";
 import JoinedClassesList from "./components/JoinedClassesList";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./components/Mainpage/Mainpage";
 import ClassPage from "./components/ClassPage/ClassPage";
@@ -21,9 +21,11 @@ function App() {
   //   (state) => state.joinedClasses.allClasses.classes
   // );
   // console.log(classData);
+  const user = useSelector((state) => state.auth.login?.currentUser);
+
   return (
     <BrowserRouter className="App">
-      <NavBar />
+      {user && <NavBar />}
 
       <Routes>
         <Route path="/auth/login" element={<LogInAndRegisterForm />} />

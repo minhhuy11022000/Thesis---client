@@ -10,7 +10,7 @@ const JoinedClassesList = () => {
     const dispatch = useDispatch();
 
     const classData = useSelector(
-        (state) => state.joinedClasses.allClasses.classes
+        (state) => state.joinedClasses.allClasses?.classes
     );
 
     const pending = useSelector(state => state.joinedClasses.allClasses.pending);
