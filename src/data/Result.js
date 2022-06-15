@@ -5,8 +5,8 @@ export const studentRecordByClass = {
     { quiz_name: "Quiz 1", avg_score: 80 },
     { quiz_name: "Quiz 2", avg_score: 60 },
     { quiz_name: "Quiz 3", avg_score: 55.5 },
-    { quiz_name: "Quiz 4", avg_score: 40 },
-    { quiz_name: "Quiz 5", avg_score: 75.5 },
+    // { quiz_name: "Quiz 4", avg_score: 40 },
+    // { quiz_name: "Quiz 5", avg_score: 75.5 },
   ],
 };
 

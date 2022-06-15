@@ -15,10 +15,11 @@ export const addNewQuestion = async (question, dispatch) => {
   }
 };
 
-export const getAllQuestions = async (dispatch) => {
+export const getAllQuestions = async (subject, dispatch) => {
   dispatch(getAllQuestionsStart());
   try {
-    const res = await axios.get(`/questions`);
+    const res = await axios.get(`/questions/${subject}`);
+    console.log(res.data);
     dispatch(getAllQuestionsSuccess(res.data));
   } catch (err) {
     dispatch(getAllQuestionsError());

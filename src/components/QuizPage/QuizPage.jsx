@@ -12,18 +12,21 @@ const QuizPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        getQuiz(id, dispatch);
-    }, [id, dispatch]);
-
-
     const quizPending = useSelector(state => state.quizzes.pending);
-    const quizData = useSelector(state => state.quizzes.selectedQuiz);
     const scoreData = useSelector(state => state.scores.score);
     const classData = useSelector(state => state.joinedClasses.allClasses?.selectedClass);
     const user = useSelector(state => state.auth.login?.currentUser);
 
-    console.log(scoreData);
+    const subject = classData.subject;
+    console.log(subject)
+
+    useEffect(() => {
+        getQuiz(id, subject, dispatch);
+    }, [id, subject, dispatch]);
+
+    const quizData = useSelector(state => state.quizzes.selectedQuiz);
+
+    console.log(quizData);
 
     const [questionIndex, setQuestionIndex] = useState(0);
 
@@ -61,8 +64,8 @@ const QuizPage = () => {
             <Box textAlign='center' mt={5}>
                 <Typography variant="h3">{quizData.quiz_name}</Typography >
                 <Typography variant="h4">Question {questionIndex + 1}</Typography>
-                <Typography mt={5}>{quizData.questions?.[questionIndex].question_text}</Typography>
-                {quizData.questions?.[questionIndex].question_possibilities.map(item => {
+                <Typography mt={5}>{quizData.questions?.[questionIndex]?.question_text}</Typography>
+                {quizData.questions?.[questionIndex]?.question_possibilities.map(item => {
                     return (
                         <Box key={item._id} mt={2}>
                             <Button onClick={handleClickAnswer} variant="contained">{item.answer}</Button>

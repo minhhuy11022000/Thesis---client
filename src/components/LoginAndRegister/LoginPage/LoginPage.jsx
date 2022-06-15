@@ -45,9 +45,9 @@ const LoginPage = ({ handleChange }) => {
                 <TextField label="Username" placeholder='Enter username' variant="standard" fullWidth required autoComplete='off' onChange={(e) => setUsername(e.target.value)} />
                 <TextField label="Password" placeholder='Enter password' variant="standard" fullWidth required type="password" autoComplete='off' onChange={(e) => setPassword(e.target.value)} />
                 <Button className='btn__input' variant='contained' corlor='primary' style={btnStyle} fullWidth onClick={handleLogin}>Sign In</Button>
-                <Typography>
+                {/* <Typography>
                     <Link to='auth/forgot'>Forgot password ?</Link>
-                </Typography>
+                </Typography> */}
                 <Typography> Do you have an account ? <Link to='#' onClick={() => handleChange('event', '2')}>Sign Up</Link>
                 </Typography>
             </Paper>
