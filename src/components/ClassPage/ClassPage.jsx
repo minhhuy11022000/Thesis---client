@@ -13,6 +13,11 @@ const ClassPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
 
+    const classData = useSelector(state => state.joinedClasses.allClasses?.selectedClass);
+    const quizzesData = useSelector(state => state.quizzes?.allQuizzes);
+    const pending = useSelector(state => state.joinedClasses.allClasses.pending);
+    const user = useSelector(state => state.auth.login?.currentUser);
+
     useEffect(() => {
         getClass(id, dispatch);
     }, [dispatch, id]);
@@ -22,10 +27,7 @@ const ClassPage = () => {
         getAllQuizzes(id, dispatch);
     }, [dispatch, id]);
 
-    const classData = useSelector(state => state.joinedClasses.allClasses?.selectedClass);
-    const quizzesData = useSelector(state => state.quizzes?.allQuizzes);
-    const pending = useSelector(state => state.joinedClasses.allClasses.pending);
-    const user = useSelector(state => state.auth.login?.currentUser);
+
 
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -51,14 +53,14 @@ const ClassPage = () => {
                         </div>
                         <div className="main__text">
                             <h1 className="main__heading main__overflow">
-                                {classData.class_name}
+                                {classData?.class_name}
                             </h1>
                             <div className="main__section main__overflow">
-                                {classData.section}
+                                {classData?.section}
                             </div>
                             <div className="main__wrapper2">
                                 <em className="main__code">Class Code :</em>
-                                <div className="main__id">{classData._id}</div>
+                                <div className="main__id">{classData?._id}</div>
                             </div>
                         </div>
                     </div>

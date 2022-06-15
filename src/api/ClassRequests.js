@@ -8,10 +8,10 @@ import {
   getJoinedClassError,
 } from "../redux/joinedClassesSlice";
 
-export const getClasses = async (dispatch) => {
+export const getClasses = async (lecturerId, dispatch) => {
   dispatch(getJoinedClassesStart());
   try {
-    const res = await axios.get(`/classes`);
+    const res = await axios.get(`/classes/${lecturerId}`);
     dispatch(getJoinedClassesSuccess(res.data));
   } catch (err) {
     dispatch(getJoinedClassesError());

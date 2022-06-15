@@ -11,20 +11,18 @@ import { useEffect, useState } from 'react';
 import { getAllQuestions } from '../../../api/QuestionRequests';
 import { Divider, Typography, Box, CircularProgress } from '@mui/material';
 import './QuestionList.scss';
-// import questions from '../../../data/Questions';
 
-const QuestionList = () => {
+const QuestionList = ({ subject }) => {
     const [open, setOpen] = useState(true);
-
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     const handleClick = () => {
         setOpen(!open);
     };
 
     useEffect(() => {
-        getAllQuestions(dispatch);
-    }, [dispatch]);
+        getAllQuestions(subject, dispatch);
+    }, [subject, dispatch]);
 
     const questions = useSelector(state => state.questions.questionsList);
     const pendingQuestion = useSelector(state => state.questions.pending);

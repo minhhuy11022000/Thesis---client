@@ -11,15 +11,16 @@ const JoinedClassesList = () => {
     const dispatch = useDispatch();
 
     const classData = useSelector(
-        (state) => state.joinedClasses.allClasses?.classes
+        (state) => state.joinedClasses.allClasses?.classes?.classesReturn
     );
 
-    const pending = useSelector(state => state.joinedClasses.allClasses.pending);
+    const pending = useSelector(state => state.joinedClasses.allClasses?.pending);
     const user = useSelector(state => state.auth.login?.currentUser);
+    const lecturerId = user?.uni_id;
 
     useEffect(() => {
-        getClasses(dispatch);
-    }, [dispatch]);
+        getClasses(lecturerId, dispatch);
+    }, [lecturerId, dispatch]);
 
     if (pending) {
         return (
@@ -38,7 +39,7 @@ const JoinedClassesList = () => {
             <ul className="joined">
                 {classData.map((joinedClass) => {
                     return (
-                        <JoinedClass key={joinedClass._id} classData={joinedClass} />
+                        <JoinedClass key={joinedClass?._id} classData={joinedClass} />
                     );
                 })}
             </ul>
