@@ -9,18 +9,19 @@ import './JoinedClassesList.scss';
 
 const JoinedClassesList = () => {
     const dispatch = useDispatch();
-
-    const classData = useSelector(
-        (state) => state.joinedClasses.allClasses?.classes?.classesReturn
-    );
-
-    const pending = useSelector(state => state.joinedClasses.allClasses?.pending);
     const user = useSelector(state => state.auth.login?.currentUser);
     const lecturerId = user?.uni_id;
 
     useEffect(() => {
         getClasses(lecturerId, dispatch);
     }, [lecturerId, dispatch]);
+
+    const classData = useSelector(
+        (state) => state.joinedClasses.allClasses?.classes?.classesReturn
+    );
+
+    const pending = useSelector(state => state.joinedClasses.allClasses?.pending);
+
 
     if (pending) {
         return (
@@ -37,7 +38,7 @@ const JoinedClassesList = () => {
                 <Button variant="contained">{user?.isLecturer ? `Create class` : `Join class`}</Button>
             </div>
             <ul className="joined">
-                {classData.map((joinedClass) => {
+                {classData?.map((joinedClass) => {
                     return (
                         <JoinedClass key={joinedClass?._id} classData={joinedClass} />
                     );

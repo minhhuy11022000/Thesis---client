@@ -47,7 +47,7 @@ const QuestionList = ({ subject }) => {
                 </ListSubheader>
             }
         >
-            {questions.map(question => {
+            {questions?.map(question => {
                 return (
                     <div key={question._id}>
                         <ListItemButton onClick={handleClick}>

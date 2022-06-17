@@ -10,7 +10,6 @@ import { getAllQuestions } from "../../api/QuestionRequests";
 
 const QuestionPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const dispatch = useDispatch()
 
     const subjectList = useSelector(
         (state) => state.joinedClasses.allClasses?.classes?.subjectList
