@@ -24,12 +24,6 @@ import { useSelector } from 'react-redux'
 // ];
 
 const StudentRecord = ({ listStudentScore }) => {
-
-    // const newList = listStudentScore.list_score[0].results.sort((a, b) => a.grade  b.grade)
-    // console.log(newList);
-    // console.log("Quiz 1" > "Quiz 2")
-    // console.log("alo")
-
     const pendingRequestListScore = useSelector(state => state.results.pending);
 
     if (pendingRequestListScore) {

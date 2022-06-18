@@ -1,0 +1,25 @@
+.personal_score_table {
+    width: 300px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.avg_score_display {
+    margin-top: 20px;
+
+    .avg_score {
+        font-size: 200%;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .yellow {
+        color: yellow;
+    }
+}

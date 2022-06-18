@@ -17,7 +17,7 @@ const ResultPage = () => {
 
     const handleSearch = (e) => {
         setSubject((e.target.value).toUpperCase());
-        console.log((e.target.value).toUpperCase());
+        // console.log((e.target.value).toUpperCase());
     }
 
     // useEffect(() => {

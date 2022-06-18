@@ -3,19 +3,24 @@ import { useState } from 'react';
 import './ResultPageStudent.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import StudentResultPersonal from '../StudentResultPersonal/StudentResultPersonal';
+import './ResultPageStudent.scss';
+import { getPersonalScore } from '../../api/ResultRequests';
 
 const ResultPageStudent = () => {
     const [subject, setSubject] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const studentId = useSelector(state => state.auth.login?.currentUser.uni_id)
 
     const handleSearch = (e) => {
         setSubject((e.target.value).toUpperCase());
-        console.log((e.target.value).toUpperCase());
     }
 
     const handleSubmitSearch = () => {
-        // navigate(`${type}`)
-        // getListScoreOfStudentBySubject(subject, dispatch);
+        navigate(`${subject}`)
+        getPersonalScore(subject, studentId, dispatch);
     }
 
     return (
@@ -34,6 +39,9 @@ const ResultPageStudent = () => {
             >
                 Search
             </Button>
+            <Routes>
+                {subject && <Route path={`${subject}`} element={<StudentResultPersonal subject={subject} studentId={studentId} />} />}
+            </Routes>
         </div>
     );
 }

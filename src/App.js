@@ -28,7 +28,7 @@ function App() {
         {user?.isLecturer ? (
           <Route path="/results/*" element={<ResultPage />} />
         ) : (
-          <Route path="/results/*" element={<ResultPageStudent />} />
+          <Route path="/results/:id/*" element={<ResultPageStudent />} />
         )}
       </Routes>
     </BrowserRouter>
