@@ -47,7 +47,7 @@ const QuestionList = ({ subject }) => {
                 </ListSubheader>
             }
         >
-            {questions.map(question => {
+            {questions?.map(question => {
                 return (
                     <div key={question._id}>
                         <ListItemButton onClick={handleClick}>
@@ -57,16 +57,16 @@ const QuestionList = ({ subject }) => {
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <Typography className='list__question__diffLevel'>{question.difficulty_level}</Typography>
                             <List component="div" disablePadding>
-                                {question.question_possibilities.map(item => {
+                                {question?.question_possibilities.map(item => {
                                     return (
                                         <ListItemButton key={item._id} sx={{ pl: 4 }}>
-                                            <ListItemText primary={item.answer} />
+                                            <ListItemText primary={item?.answer} />
                                         </ListItemButton>
                                     )
                                 })}
                                 <ListItemButton>
                                     <Typography variant='caption'>Correct answer:</Typography>
-                                    <ListItemText primary={question.correct_answer} />
+                                    <ListItemText primary={question?.correct_answer} />
                                 </ListItemButton>
                             </List>
                         </Collapse>

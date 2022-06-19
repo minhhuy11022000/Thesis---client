@@ -27,9 +27,9 @@ const MainPage = () => {
     return (
         <div className="mainpage__container">
             <Typography align="center" variant="h5">Your role: {user?.isLecturer ? `Lecturer` : `Student`}</Typography>
-            <Link to="/classes" className="link__child">Classes</Link>
+            <Link to={`/classes/${user?.isLecturer ? "lecturer" : "student"}`} className="link__child">Classes</Link>
             {user?.isLecturer && <Link to="/questions" className="link__child">Questions</Link>}
-            <Link to="/results" className="link__child" >Class Result</Link>
+            <Link to={`/results/${user?.isLecturer ? '' : user?.uni_id}`} className="link__child" >Class Result</Link>
         </div>
     );
 }

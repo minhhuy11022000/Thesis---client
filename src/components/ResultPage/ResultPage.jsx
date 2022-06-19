@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Alert, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ const ResultPage = () => {
 
     const handleSearch = (e) => {
         setSubject((e.target.value).toUpperCase());
-        console.log((e.target.value).toUpperCase());
+        // console.log((e.target.value).toUpperCase());
     }
 
     // useEffect(() => {
@@ -25,8 +25,12 @@ const ResultPage = () => {
     // }, [subject, dispatch]);
 
     const handleSubmitSearch = () => {
-        navigate(`${type}`)
-        getListScoreOfStudentBySubject(subject, dispatch);
+        if (!type) {
+            <Alert onClose={() => { }}>You have to select Type of Visualization</Alert>
+        } else {
+            navigate(`${type}`)
+            getListScoreOfStudentBySubject(subject, dispatch);
+        }
     }
 
     const listScore = useSelector(state => state.results.listScoreBySubject);
@@ -41,6 +45,9 @@ const ResultPage = () => {
                     type="search"
                     onChange={handleSearch}
                 />
+                <div className="result__search">
+                    <SelectTypeField type={type} setType={setType} />
+                </div>
                 <Button
                     className="result__search__btn"
                     onClick={handleSubmitSearch}
@@ -48,9 +55,6 @@ const ResultPage = () => {
                 >
                     Search
                 </Button>
-                <div className="result__search">
-                    <SelectTypeField type={type} setType={setType} />
-                </div>
             </div>
             {/* <StudentChart /> */}
             <Routes>

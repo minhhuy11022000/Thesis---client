@@ -10,6 +10,7 @@ import QuizPage from "./components/QuizPage/QuizPage";
 import ResultPage from "./components/ResultPage/ResultPage";
 import LogInAndRegisterForm from "./components/LoginAndRegister";
 import ResultPageStudent from "./components/ResultPageStudent/ResultPageStudent";
+import JoinedClassesStudent from "./components/JoinedClassesStudent/JoinedClassesStudent";
 
 function App() {
   const user = useSelector((state) => state.auth.login?.currentUser);
@@ -21,14 +22,19 @@ function App() {
       <Routes>
         <Route path="/auth/login" element={<LogInAndRegisterForm />} />
         <Route path="/" element={<MainPage />} />
-        <Route path="/classes" element={<JoinedClassesList />} />
+        {user?.isLecturer ? (
+          <Route path="/classes/lecturer" element={<JoinedClassesList />} />
+        ) : (
+          <Route path="classes/student" element={<JoinedClassesStudent />} />
+        )}
+
         <Route path="/classes/:id" element={<ClassPage />} />
         <Route path="/questions" element={<QuestionPage />} />
         <Route path="/quizzes/:id" element={<QuizPage />} />
         {user?.isLecturer ? (
           <Route path="/results/*" element={<ResultPage />} />
         ) : (
-          <Route path="/results/*" element={<ResultPageStudent />} />
+          <Route path="/results/:id/*" element={<ResultPageStudent />} />
         )}
       </Routes>
     </BrowserRouter>

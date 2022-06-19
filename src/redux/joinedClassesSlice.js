@@ -5,6 +5,7 @@ export const joinedClassesSlice = createSlice({
   initialState: {
     allClasses: {
       classes: [],
+      studentClasses: [],
       pending: false,
       error: false,
       selectedClass: {},
@@ -35,6 +36,11 @@ export const joinedClassesSlice = createSlice({
       state.allClasses.error = false;
       state.allClasses.pending = false;
     },
+    getStudentClassesSuccess: (state, action) => {
+      state.allClasses.studentClasses = action.payload;
+      state.allClasses.pending = false;
+      state.allClasses.error = false;
+    },
   },
 });
 
@@ -42,6 +48,7 @@ export const {
   getJoinedClassesError,
   getJoinedClassesStart,
   getJoinedClassesSuccess,
+  getStudentClassesSuccess,
   getJoinedClassStart,
   getJoinedClassError,
   getJoinedClassSuccess,

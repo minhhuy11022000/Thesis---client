@@ -16,9 +16,11 @@ export const loginUser = async (user, dispatch, navigate) => {
   try {
     const res = await axios.post("/auth/login", user);
     dispatch(loginSuccess(res.data));
+    console.log(res.data);
     navigate("/");
   } catch (err) {
-    dispatch(loginFailed());
+    console.log(err.response.data);
+    dispatch(loginFailed(err.response.data));
   }
 };
 

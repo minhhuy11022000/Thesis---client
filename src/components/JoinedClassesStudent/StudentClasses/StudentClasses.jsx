@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import "./JoinedClass.scss";
+import "./StudentClasses.scss";
 
-const JoinedClasses = ({ classData }) => {
+const StudentClasses = ({ classData }) => {
     return (
         <li className="joined__list">
             <div className="joined__container">
                 <div className="joined__imgWrapper" />
                 <div className="joined__image" />
                 <div className="joined__content">
-                    <Link to={`/classes/${classData._id}`} className="joined__title" href="">
+                    <Link to={`/classes/${classData.class_code}`} className="joined__title" href="">
                         <h2>{classData.class_name}</h2>
                     </Link>
                     <p className="joined__section">{classData.section}</p>
@@ -21,7 +21,6 @@ const JoinedClasses = ({ classData }) => {
             </div>
         </li>
     );
-};
+}
 
-export default JoinedClasses;
-
+export default StudentClasses;
