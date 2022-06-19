@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getClasses, getClassStudentRole } from "../../api/ClassRequests";
+import { getClasses } from "../../api/ClassRequests";
 import JoinedClass from "./JoinedClass/JoinedClass";
 import CircularProgress from '@mui/material/CircularProgress';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Box, Button } from "@mui/material";
 import './JoinedClassesList.scss';
 

@@ -1,4 +1,4 @@
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./StudentClasses.scss";
 
 const StudentClasses = ({ classData }) => {
