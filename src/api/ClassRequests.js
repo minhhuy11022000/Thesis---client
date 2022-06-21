@@ -7,6 +7,7 @@ import {
   getJoinedClassStart,
   getJoinedClassError,
   getStudentClassesSuccess,
+  createNewClassSuccess,
 } from "../redux/joinedClassesSlice";
 
 export const getClasses = async (lecturerId, dispatch) => {
@@ -31,12 +32,21 @@ export const getClass = async (id, dispatch) => {
 };
 
 export const getClassStudentRole = async (studentId, dispatch) => {
-  dispatch(getJoinedClassStart());
+  dispatch(getJoinedClassesStart());
   try {
     const url = `/classes/student/` + studentId;
     const res = await axios.get(url);
     dispatch(getStudentClassesSuccess(res.data));
   } catch (err) {
-    dispatch(getJoinedClassError());
+    dispatch(getJoinedClassesError());
+  }
+};
+
+export const createNewClass = async (newClass, dispatch) => {
+  try {
+    const res = await axios.post("/classes", newClass);
+    dispatch(createNewClassSuccess(res.data));
+  } catch (err) {
+    console.log({ error: err });
   }
 };

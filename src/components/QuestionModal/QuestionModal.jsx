@@ -195,7 +195,7 @@ const QuestionModal = ({ isModalOpen, setIsModalOpen }) => {
                             variant='contained'
                             onClick={handleAddNewQuestion}
                         >
-                            Add
+                            Create
                         </Button>
                     </form>
                 </Box>
