@@ -10,13 +10,17 @@
         flex: 1 1 auto;
         cursor: pointer;
 
+
+
         .quiz__link {
             display: flex;
             text-decoration: none;
             color: black;
 
             .quiz__icon {
+
                 // position: relative;
+
                 padding: 14px 16px;
                 height: 24px;
                 width: 24px;

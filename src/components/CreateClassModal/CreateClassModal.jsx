@@ -12,8 +12,8 @@ import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './QuizModal.scss';
-import { createQuiz } from '../../api/QuizRequest';
+import './CreateClassModal.scss';
+import { createNewClass } from '../../api/ClassRequests';
 
 const style = {
     position: 'absolute',
@@ -29,32 +29,35 @@ const style = {
     'overflow-y': 'scroll'
 };
 
-const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
-    const [quizName, setQuizName] = useState('');
+const CreateClassModal = ({ openCreateClass, setOpenCreateClass, lecturerId }) => {
+    const [className, setClassName] = useState('');
+    const [subject, setSubject] = useState('');
+    const [section, setSection] = useState('');
+    const [room, setRoom] = useState('');
     const dispatch = useDispatch();
-    const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
-    console.log(classData)
 
     const handleCloseModal = () => {
-        setOpenQuizModal(false);
+        setOpenCreateClass(false);
     }
 
-    const handleSubmitQuiz = () => {
-        const quizInfo = {
-            quiz_name: quizName,
-            class_code: classData._id,
-            subject: classData.subject,
+    const handleSubmiteCreateClass = () => {
+        const newClass = {
+            class_name: className,
+            section: section,
+            room: room,
+            subject: subject,
+            lecturer_id: lecturerId
         }
-        console.log(quizInfo)
-        createQuiz(quizInfo, dispatch);
-        setOpenQuizModal(false);
+        console.log(newClass)
+        createNewClass(newClass, dispatch);
+        setOpenCreateClass(false);
     }
 
     return (
         <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            open={openQuizModal}
+            open={openCreateClass}
             onClose={handleCloseModal}
             closeAfterTransition
             BackdropComponent={Backdrop}
@@ -62,28 +65,44 @@ const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
                 timeout: 500,
             }}
         >
-            <Fade in={openQuizModal}>
+            <Fade in={openCreateClass}>
                 <Box sx={style}>
                     <Typography id="transition-modal-title" variant="h6" component="h2">
-                        Adding New Quiz
+                        Adding New Class
                     </Typography>
-                    <form className='add_quiz_form' autoComplete='off'>
+                    <form className='add_class_form' autoComplete='off'>
                         <TextField
                             className='form_element'
                             required
-                            label="Quiz name"
-                            value={quizName}
-                            onChange={(e) => setQuizName(e.target.value)}
+                            label="Class Name"
+                            value={className}
+                            onChange={(e) => setClassName(e.target.value)}
                         />
                         <TextField
                             className='form_element'
                             required
-                            label='Number of Questions'
+                            label="Section"
+                            value={section}
+                            onChange={(e) => setSection(e.target.value)}
+                        />
+                        <TextField
+                            className='form_element'
+                            required
+                            label="Subject"
+                            value={subject}
+                            onChange={(e) => setSubject(e.target.value)}
+                        />
+                        <TextField
+                            className='form_element'
+                            required
+                            label="Room"
+                            value={room}
+                            onChange={(e) => setRoom(e.target.value)}
                         />
                         <Button
                             className='form_element'
                             variant='contained'
-                            onClick={handleSubmitQuiz}
+                            onClick={handleSubmiteCreateClass}
                         >
                             Create
                         </Button>
@@ -94,4 +113,4 @@ const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
     );
 }
 
-export default QuizModal;
+export default CreateClassModal;

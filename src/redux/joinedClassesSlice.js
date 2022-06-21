@@ -41,6 +41,17 @@ export const joinedClassesSlice = createSlice({
       state.allClasses.pending = false;
       state.allClasses.error = false;
     },
+    createNewClassSuccess: (state, action) => {
+      state.allClasses.classes = [...state.allClasses.classes, action.payload];
+    },
+    joinClassStudentSuccess: (state, action) => {
+      state.allClasses.studentClasses = [
+        ...state.allClasses.studentClasses,
+        action.payload,
+      ];
+      state.allClasses.pending = false;
+      state.allClasses.error = false;
+    },
   },
 });
 
@@ -52,5 +63,7 @@ export const {
   getJoinedClassStart,
   getJoinedClassError,
   getJoinedClassSuccess,
+  createNewClassSuccess,
+  joinClassStudentSuccess,
 } = joinedClassesSlice.actions;
 export default joinedClassesSlice.reducer;

@@ -16,7 +16,7 @@ export const loginUser = async (user, dispatch, navigate) => {
   try {
     const res = await axios.post("/auth/login", user);
     dispatch(loginSuccess(res.data));
-    console.log(res.data);
+    // console.log(res.data);
     navigate("/");
   } catch (err) {
     console.log(err.response.data);
