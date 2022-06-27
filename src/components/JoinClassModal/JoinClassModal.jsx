@@ -11,9 +11,8 @@ import Typography from '@mui/material/Typography';
 // import Select from '@mui/material/Select';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './QuizModal.scss';
-import { createQuiz } from '../../api/QuizRequest';
+import { useDispatch } from 'react-redux';
+import { joinNewClass } from '../../api/ClassRequests';
 
 const style = {
     position: 'absolute',
@@ -29,34 +28,27 @@ const style = {
     'overflow-y': 'scroll'
 };
 
-const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
-    const [quizName, setQuizName] = useState('');
-    const [chapter, setChapter] = useState('');
+const JoinClassModal = ({ openJoinClass, setOpenJoinClass, studentId }) => {
+    const [classCode, setClassCode] = useState('');;
     const dispatch = useDispatch();
-    const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
-    console.log(classData)
 
     const handleCloseModal = () => {
-        setOpenQuizModal(false);
+        setOpenJoinClass(false);
     }
 
-    const handleSubmitQuiz = () => {
-        const quizInfo = {
-            quiz_name: quizName,
-            class_code: classData._id,
-            subject: classData.subject,
-            chapter: `Chapter ` + chapter,
+    const handleSubmiteJoinClass = () => {
+        const newClass = {
+            class_code: classCode
         }
-        console.log(quizInfo)
-        createQuiz(quizInfo, dispatch);
-        setOpenQuizModal(false);
+        joinNewClass(newClass, studentId, dispatch);
+        setOpenJoinClass(false);
     }
 
     return (
         <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            open={openQuizModal}
+            open={openJoinClass}
             onClose={handleCloseModal}
             closeAfterTransition
             BackdropComponent={Backdrop}
@@ -64,37 +56,26 @@ const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
                 timeout: 500,
             }}
         >
-            <Fade in={openQuizModal}>
+            <Fade in={openJoinClass}>
                 <Box sx={style}>
                     <Typography id="transition-modal-title" variant="h6" component="h2">
-                        Adding New Quiz
+                        Joining New Class
                     </Typography>
-                    <form className='add_quiz_form' autoComplete='off'>
+                    <form className='add_class_form' autoComplete='off'>
                         <TextField
                             className='form_element'
                             required
-                            label="Quiz name"
-                            value={quizName}
-                            onChange={(e) => setQuizName(e.target.value)}
+                            label="Class Code"
+                            value={classCode}
+                            onChange={(e) => setClassCode(e.target.value)}
                         />
-                        <TextField
-                            className='form_element'
-                            required
-                            label="Chapter"
-                            value={chapter}
-                            onChange={(e) => setChapter(e.target.value)}
-                        />
-                        <TextField
-                            className='form_element'
-                            required
-                            label='Number of Questions'
-                        />
+
                         <Button
                             className='form_element'
                             variant='contained'
-                            onClick={handleSubmitQuiz}
+                            onClick={handleSubmiteJoinClass}
                         >
-                            Create
+                            Join
                         </Button>
                     </form>
                 </Box>
@@ -103,4 +84,4 @@ const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
     );
 }
 
-export default QuizModal;
+export default JoinClassModal;

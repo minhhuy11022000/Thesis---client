@@ -23,7 +23,7 @@ const SelectTypeField = ({ type, setType }) => {
             >
                 <MenuItem value="Table">Table</MenuItem>
                 <MenuItem value="BarChart">Bar Chart</MenuItem>
-                <MenuItem value="PieChart">Pie Chart</MenuItem>
+                {/* <MenuItem value="PieChart">Pie Chart</MenuItem> */}
             </Select>
         </FormControl>
     );

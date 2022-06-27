@@ -1,6 +1,10 @@
 .list__question {
     padding: auto;
 
+    .question__item {
+        padding-left: 40px;
+    }
+
     .list__question__text {
         font-weight: 800;
     }

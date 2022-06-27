@@ -13,34 +13,35 @@ const QuizPage = () => {
     const navigate = useNavigate();
 
     const quizPending = useSelector(state => state.quizzes.pending);
-    const scoreData = useSelector(state => state.scores.score);
+    // const scoreData = useSelector(state => state.scores.score);
     const classData = useSelector(state => state.joinedClasses.allClasses?.selectedClass);
     const user = useSelector(state => state.auth.login?.currentUser);
 
     const subject = classData.subject;
     console.log(subject)
+    const quizData = useSelector(state => state.quizzes?.selectedQuiz);
 
     useEffect(() => {
         getQuiz(id, subject, dispatch);
     }, [id, subject, dispatch]);
 
-    const quizData = useSelector(state => state.quizzes.selectedQuiz);
 
     console.log(quizData);
 
     const [questionIndex, setQuestionIndex] = useState(0);
 
     const handleClickAnswer = (e) => {
+        var scoreData = 0;
         const question = quizData.questions[questionIndex];
         console.log(scoreData);
         if (e.target.textContent === question.correct_answer) {
-            dispatch(increaseScore(scoreData + 1));
+            scoreData = scoreData + 1;
         }
         if (questionIndex + 1 < quizData.questions.length) {
             setQuestionIndex(questionIndex + 1);
         }
         else {
-            navigate(`result`);
+            navigate(`/classes/student`);
             submitStudentResult({
                 class_name: classData.class_name,
                 student_id: user?.uni_id,
