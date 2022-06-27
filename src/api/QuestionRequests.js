@@ -9,6 +9,7 @@ import {
 export const addNewQuestion = async (question, dispatch) => {
   try {
     const res = await axios.post("/questions", question);
+    // console.log(res.data);
     dispatch(createNewQuestion(res.data));
   } catch (err) {
     console.log({ error: err });

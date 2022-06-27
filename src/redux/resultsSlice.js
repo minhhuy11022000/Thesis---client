@@ -5,6 +5,7 @@ export const resultsSlice = createSlice({
   initialState: {
     listScoreByName: [],
     listScoreBySubject: {},
+    listAvgScore: {},
     studentPersonalScore: {},
     pending: false,
     error: false,
@@ -28,6 +29,11 @@ export const resultsSlice = createSlice({
       state.pending = false;
       state.error = false;
     },
+    getAvgScore: (state, action) => {
+      state.listAvgScore = action.payload;
+      state.pending = false;
+      state.error = false;
+    },
   },
 });
 
@@ -36,6 +42,7 @@ export const {
   getScoreError,
   getScoreBySubjectSuccess,
   getStudentPersonalScore,
+  getAvgScore,
 } = resultsSlice.actions;
 
 export default resultsSlice.reducer;
