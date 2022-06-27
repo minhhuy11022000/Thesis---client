@@ -90,29 +90,33 @@ const QuestionList = ({ subject }) => {
                             <Typography className='list__question__text'>{subChapter.chapter}</Typography>
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            {subChapter?.listOfQuestions.map(question => {
-                                return (
-                                    <div>
-                                        <Typography >{question.question_text}</Typography>
-                                        <Typography className={`list__question__diffLevel ${handleColorDiffLev(question.difficulty_level)}`}>{question.difficulty_level}</Typography>
-                                        <List component="div" disablePadding>
-                                            {question?.question_possibilities.map(item => {
-                                                return (
-                                                    <ListItemButton key={item._id} sx={{ pl: 4 }}>
-                                                        <ListItemText primary={item?.answer} />
-                                                    </ListItemButton>
-                                                )
-                                            })}
-                                            <ListItemButton>
-                                                <Typography variant='caption'>Correct answer:</Typography>
-                                                <ListItemText primary={question?.correct_answer} />
-                                            </ListItemButton>
-                                        </List>
-                                    </div>
-                                )
-                            })}
-                        </Collapse>
+                        <div className='question__item'>
+
+                            <Collapse in={open} timeout="auto" unmountOnExit>
+                                {subChapter?.listOfQuestions.map(question => {
+                                    return (
+                                        <div >
+                                            <Typography >{question.question_text}</Typography>
+                                            <Typography className={`list__question__diffLevel ${handleColorDiffLev(question.difficulty_level)}`}>{question.difficulty_level}</Typography>
+                                            <List component="div" disablePadding>
+                                                {question?.question_possibilities.map(item => {
+                                                    return (
+                                                        <ListItemButton key={item._id} sx={{ pl: 4 }}>
+                                                            <ListItemText primary={item?.answer} />
+                                                        </ListItemButton>
+                                                    )
+                                                })}
+                                                <ListItemButton>
+                                                    <Typography variant='caption'>Correct answer: </Typography>
+                                                    <ListItemText primary={question?.correct_answer} />
+                                                </ListItemButton>
+                                            </List>
+                                            <Divider />
+                                        </div>
+                                    )
+                                })}
+                            </Collapse>
+                        </div>
                     </div>
                 )
             })}

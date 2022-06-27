@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 // import Select from '@mui/material/Select';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './CreateClassModal.scss';
 import { createNewClass } from '../../api/ClassRequests';
 

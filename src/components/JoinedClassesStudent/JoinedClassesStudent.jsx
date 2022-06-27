@@ -1,13 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getClassStudentRole } from "../../api/ClassRequests";
 import CircularProgress from '@mui/material/CircularProgress';
 // import { Link } from "react-router-dom";
 import { Box, Button } from "@mui/material";
 import './JoinedClassesStudent.scss';
 import StudentClasses from "./StudentClasses/StudentClasses";
+import JoinClassModal from "../JoinClassModal/JoinClassModal";
 
 const JoinedClassesStudent = () => {
+    const [openJoinClass, setOpenJoinClass] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(state => state.auth.login?.currentUser);
     const userId = user?.uni_id;
@@ -35,7 +37,8 @@ const JoinedClassesStudent = () => {
         <div className="joined__class__container">
             <div className="joined__class__btn">
 
-                <Button variant="contained">Join class</Button>
+                <Button variant="contained" onClick={() => setOpenJoinClass(!openJoinClass)}>Join class</Button>
+                {openJoinClass && <JoinClassModal openJoinClass={openJoinClass} setOpenJoinClass={setOpenJoinClass} studentId={userId} />}
             </div>
             <ul className="joined">
                 {classData?.map((joinedClass) => {
