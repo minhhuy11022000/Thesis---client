@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  getAvgScore,
   getScoreBySubjectSuccess,
   getScoreError,
   getScoreStart,
@@ -20,7 +21,7 @@ export const getListScoreOfStudentBySubject = async (subject, dispatch) => {
   try {
     const res = await axios.get(`/results/class/${subject}`);
     dispatch(getScoreBySubjectSuccess(res.data));
-    console.log(res.data);
+    // console.log(res.data);
   } catch (err) {
     dispatch(getScoreError());
   }
@@ -29,8 +30,18 @@ export const getListScoreOfStudentBySubject = async (subject, dispatch) => {
 export const getPersonalScore = async (subject, studentId, dispatch) => {
   dispatch(getScoreStart());
   try {
-    const res = await axios.post(`/results/${studentId}`, { subject });
+    const res = await axios.post(`/results/${studentId}`, { subject: subject });
     dispatch(getStudentPersonalScore(res.data));
+  } catch (err) {
+    dispatch(getScoreError());
+  }
+};
+
+export const getQuizAvgScore = async (subject, dispatch) => {
+  dispatch(getScoreStart());
+  try {
+    const res = await axios.get(`/results/class/avg/${subject}`);
+    dispatch(getAvgScore(res.data));
   } catch (err) {
     dispatch(getScoreError());
   }

@@ -27,6 +27,16 @@ const QuestionList = ({ subject }) => {
     const questions = useSelector(state => state.questions.questionsList);
     const pendingQuestion = useSelector(state => state.questions.pending);
 
+    const handleColorDiffLev = (level) => {
+        if (level === 'Easy') {
+            return 'easy'
+        } else if (level === 'Medium') {
+            return 'medium'
+        } else {
+            return 'hard'
+        }
+    }
+
     if (pendingQuestion) {
         return (
             <Box textAlign='center' >
@@ -34,6 +44,7 @@ const QuestionList = ({ subject }) => {
             </Box >
         )
     }
+    questions.map(question => console.log(question.chapter));
 
     return (
         <List
@@ -47,30 +58,61 @@ const QuestionList = ({ subject }) => {
                 </ListSubheader>
             }
         >
-            {questions?.map(question => {
+            {questions?.map(subChapter => {
                 return (
-                    <div key={question._id}>
+                    // <div key={question._id}>
+                    //     <ListItemButton onClick={handleClick}>
+                    //         <ListItemText className='list__question__text' primary={question.question_text} />
+                    //         {open ? <ExpandLess /> : <ExpandMore />}
+                    //     </ListItemButton>
+                    //     <Collapse in={open} timeout="auto" unmountOnExit>
+                    //         <Typography className={`list__question__diffLevel ${handleColorDiffLev(question.difficulty_level)}`}>{question.difficulty_level}</Typography>
+                    //         <List component="div" disablePadding>
+                    //             {question?.question_possibilities.map(item => {
+                    //                 return (
+                    //                     <ListItemButton key={item._id} sx={{ pl: 4 }}>
+                    //                         <ListItemText primary={item?.answer} />
+                    //                     </ListItemButton>
+                    //                 )
+                    //             })}
+                    //             <ListItemButton>
+                    //                 <Typography variant='caption'>Correct answer:</Typography>
+                    //                 <ListItemText primary={question?.correct_answer} />
+                    //             </ListItemButton>
+                    //         </List>
+                    //     </Collapse>
+                    //     <Divider />
+                    // </div>
+                    // <div>{chapter}</div>
+                    <div key={subChapter.chapter}>
                         <ListItemButton onClick={handleClick}>
-                            <ListItemText className='list__question__text' primary={question.question_text} />
+                            {/* <ListItemText className='list__question__text' primary={subChapter.chapter} /> */}
+                            <Typography className='list__question__text'>{subChapter.chapter}</Typography>
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
                         <Collapse in={open} timeout="auto" unmountOnExit>
-                            <Typography className='list__question__diffLevel'>{question.difficulty_level}</Typography>
-                            <List component="div" disablePadding>
-                                {question?.question_possibilities.map(item => {
-                                    return (
-                                        <ListItemButton key={item._id} sx={{ pl: 4 }}>
-                                            <ListItemText primary={item?.answer} />
-                                        </ListItemButton>
-                                    )
-                                })}
-                                <ListItemButton>
-                                    <Typography variant='caption'>Correct answer:</Typography>
-                                    <ListItemText primary={question?.correct_answer} />
-                                </ListItemButton>
-                            </List>
+                            {subChapter?.listOfQuestions.map(question => {
+                                return (
+                                    <div>
+                                        <Typography >{question.question_text}</Typography>
+                                        <Typography className={`list__question__diffLevel ${handleColorDiffLev(question.difficulty_level)}`}>{question.difficulty_level}</Typography>
+                                        <List component="div" disablePadding>
+                                            {question?.question_possibilities.map(item => {
+                                                return (
+                                                    <ListItemButton key={item._id} sx={{ pl: 4 }}>
+                                                        <ListItemText primary={item?.answer} />
+                                                    </ListItemButton>
+                                                )
+                                            })}
+                                            <ListItemButton>
+                                                <Typography variant='caption'>Correct answer:</Typography>
+                                                <ListItemText primary={question?.correct_answer} />
+                                            </ListItemButton>
+                                        </List>
+                                    </div>
+                                )
+                            })}
                         </Collapse>
-                        <Divider />
                     </div>
                 )
             })}

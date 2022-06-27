@@ -37,6 +37,7 @@ const QuestionModal = ({ isModalOpen, setIsModalOpen }) => {
     const [diffLevel, setDiffLevel] = useState('Easy');
     const [questionType, setQuestionType] = useState('text');
     const [questionText, setQuestionText] = useState('');
+    const [chapter, setChapter] = useState('');
     const [subject, setSubject] = useState('');
     const [questionPoss1, setQuestionPoss1] = useState('');
     const [questionPoss2, setQuestionPoss2] = useState('');
@@ -60,6 +61,9 @@ const QuestionModal = ({ isModalOpen, setIsModalOpen }) => {
     }
     const handleSubject = (e) => {
         setSubject(e.target.value);
+    }
+    const handleChapter = (e) => {
+        setChapter(e.target.value);
     }
     const handleQuestionPoss1 = (e) => {
         setQuestionPoss1(e.target.value);
@@ -89,6 +93,7 @@ const QuestionModal = ({ isModalOpen, setIsModalOpen }) => {
             question_type: questionType,
             question_text: questionText,
             subject: subject,
+            chapter: `Chapter ` + chapter,
             difficulty_level: diffLevel,
             question_possibilities: solvedTempPoss,
             correct_answer: questionAnswer
@@ -135,6 +140,13 @@ const QuestionModal = ({ isModalOpen, setIsModalOpen }) => {
                             label="Subject"
                             value={subject}
                             onChange={handleSubject}
+                        />
+                        <TextField
+                            className='form_element'
+                            required
+                            label="Chapter"
+                            value={chapter}
+                            onChange={handleChapter}
                         />
                         <FormControl
                             sx={{ minWidth: 120 }}

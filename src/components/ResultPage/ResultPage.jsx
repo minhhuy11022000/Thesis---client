@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { getListScoreOfStudentBySubject } from '../../api/ResultRequests';
+import { getListScoreOfStudentBySubject, getQuizAvgScore } from '../../api/ResultRequests';
 import SelectTypeField from '../SelectTypeField/SelectTypeField';
 import StudentChart from '../StudentChart/StudentChart';
 import StudentRecord from '../StudentRecord/StudentRecord';
@@ -30,6 +30,7 @@ const ResultPage = () => {
         } else {
             navigate(`${type}`)
             getListScoreOfStudentBySubject(subject, dispatch);
+            getQuizAvgScore(subject, dispatch);
         }
     }
 
