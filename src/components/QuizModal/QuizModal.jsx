@@ -32,6 +32,12 @@ const style = {
 const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
     const [quizName, setQuizName] = useState('');
     const [chapter, setChapter] = useState('');
+    const [totalNum, setTotalNum] = useState(0);
+    const [numEasyQues, setNumEasyQues] = useState(0);
+    const [numMediumQues, setNumMediumQues] = useState(0);
+    const [numHardQues, setNumHardQues] = useState(0);
+    const [errorNum, setErrorNum] = useState(false);
+
     const dispatch = useDispatch();
     const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);
     console.log(classData)
@@ -40,14 +46,22 @@ const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
         setOpenQuizModal(false);
     }
 
+    const handleCheckErrorOfTotal = () => {
+        const checkNumber = parseInt(numEasyQues) + parseInt(numMediumQues) + parseInt(numHardQues) === parseInt(totalNum)
+        return !checkNumber
+    }
+
     const handleSubmitQuiz = () => {
         const quizInfo = {
             quiz_name: quizName,
             class_code: classData._id,
             subject: classData.subject,
             chapter: `Chapter ` + chapter,
+            easy_number: parseInt(numEasyQues),
+            medium_number: parseInt(numMediumQues),
+            hard_number: parseInt(numHardQues)
         }
-        console.log(quizInfo)
+        console.log(quizInfo);
         createQuiz(quizInfo, dispatch);
         setOpenQuizModal(false);
     }
@@ -88,11 +102,38 @@ const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
                             className='form_element'
                             required
                             label='Number of Questions'
+                            value={totalNum}
+                            onChange={(e) => setTotalNum(e.target.value)}
+                        />
+                        <TextField
+                            className='form_element'
+                            required
+                            label='Number of Easy'
+                            value={numEasyQues}
+                            inputProps={{ 'type': 'number' }}
+                            onChange={(e) => setNumEasyQues(e.target.value)}
+                        />
+                        <TextField
+                            className='form_element'
+                            required
+                            label='Number of Medium'
+                            value={numMediumQues}
+                            inputProps={{ 'type': 'number' }}
+                            onChange={(e) => setNumMediumQues(e.target.value)}
+                        />
+                        <TextField
+                            className='form_element'
+                            required
+                            label='Number of Hard'
+                            value={numHardQues}
+                            inputProps={{ 'type': 'number' }}
+                            onChange={(e) => setNumHardQues(e.target.value)}
                         />
                         <Button
                             className='form_element'
                             variant='contained'
                             onClick={handleSubmitQuiz}
+                            disabled={handleCheckErrorOfTotal()}
                         >
                             Create
                         </Button>
