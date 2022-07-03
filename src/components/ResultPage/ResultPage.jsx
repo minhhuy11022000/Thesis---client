@@ -11,12 +11,13 @@ import './ResultPage.scss';
 
 const ResultPage = () => {
     const [subject, setSubject] = useState('');
+    const [classCode, setClassCode] = useState('');
     const [type, setType] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSearch = (e) => {
-        setSubject((e.target.value).toUpperCase());
+        setClassCode((e.target.value).toUpperCase());
         // console.log((e.target.value).toUpperCase());
     }
 
@@ -29,8 +30,8 @@ const ResultPage = () => {
             <Alert onClose={() => { }}>You have to select Type of Visualization</Alert>
         } else {
             navigate(`${type}`)
-            getListScoreOfStudentBySubject(subject, dispatch);
-            getQuizAvgScore(subject, dispatch);
+            getListScoreOfStudentBySubject(classCode.toLocaleLowerCase(), dispatch);
+            getQuizAvgScore(classCode, dispatch);
         }
     }
 
@@ -42,7 +43,7 @@ const ResultPage = () => {
                 <TextField
                     className="result__search"
                     id="outlined-search"
-                    label="Enter subject"
+                    label="Enter Class Code"
                     type="search"
                     onChange={handleSearch}
                 />
@@ -52,7 +53,7 @@ const ResultPage = () => {
                 <Button
                     className="result__search__btn"
                     onClick={handleSubmitSearch}
-                    disabled={subject === '' ? true : false}
+                    disabled={classCode === '' ? true : false}
                 >
                     Search
                 </Button>

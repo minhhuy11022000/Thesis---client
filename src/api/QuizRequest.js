@@ -19,10 +19,10 @@ export const getAllQuizzes = async (id, dispatch) => {
   }
 };
 
-export const getQuiz = async (id, subject, dispatch) => {
+export const getQuiz = async (quizId, dispatch) => {
   dispatch(getQuizStart());
   try {
-    const res = await axios.post(`/quizzes/${id}`, { subject });
+    const res = await axios.post(`/quizzes/${quizId}`);
     dispatch(getQuizSuccess(res.data));
   } catch (err) {
     dispatch(getQuizError());

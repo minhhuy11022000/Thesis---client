@@ -20,6 +20,7 @@ export const getListScoreOfStudentBySubject = async (subject, dispatch) => {
   dispatch(getScoreStart());
   try {
     const res = await axios.get(`/results/class/${subject}`);
+    console.log(subject);
     dispatch(getScoreBySubjectSuccess(res.data));
     // console.log(res.data);
   } catch (err) {
