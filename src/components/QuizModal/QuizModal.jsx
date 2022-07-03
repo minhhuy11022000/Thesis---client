@@ -36,7 +36,7 @@ const QuizModal = ({ openQuizModal, setOpenQuizModal }) => {
     const [numEasyQues, setNumEasyQues] = useState(0);
     const [numMediumQues, setNumMediumQues] = useState(0);
     const [numHardQues, setNumHardQues] = useState(0);
-    const [errorNum, setErrorNum] = useState(false);
+    // const [errorNum, setErrorNum] = useState(false);
 
     const dispatch = useDispatch();
     const classData = useSelector(state => state.joinedClasses.allClasses.selectedClass);

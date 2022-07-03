@@ -15,6 +15,7 @@ const QuizPage = () => {
     const quizPending = useSelector(state => state.quizzes.pending);
     // const scoreData = useSelector(state => state.scores.score);
     const classData = useSelector(state => state.joinedClasses.allClasses?.selectedClass);
+    // const currentClassCode = classData.class_code;
     const user = useSelector(state => state.auth.login?.currentUser);
 
     const subject = classData.subject;
@@ -22,8 +23,8 @@ const QuizPage = () => {
     const quizData = useSelector(state => state.quizzes?.selectedQuiz);
 
     useEffect(() => {
-        getQuiz(id, subject, dispatch);
-    }, [id, subject, dispatch]);
+        getQuiz(id, dispatch);
+    }, [id, dispatch]);
 
 
     console.log(quizData);
@@ -44,6 +45,7 @@ const QuizPage = () => {
             navigate(`/classes/student`);
             submitStudentResult({
                 class_name: classData.class_name,
+                class_code: classData.class_code,
                 student_id: user?.uni_id,
                 subject: classData.subject,
                 quiz_name: quizData.quiz_name,

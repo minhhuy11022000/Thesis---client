@@ -67,7 +67,7 @@ const StudentRecord = ({ listStudentScore }) => {
                             <TableCell align="right">{row.quiz5}</TableCell>
                         </TableRow>
                     ))} */}
-                    {listStudentScore.list_score.map(row => {
+                    {listStudentScore?.list_score.map(row => {
                         return (
                             <TableRow
                                 key={row.student_id}
