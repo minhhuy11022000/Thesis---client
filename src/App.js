@@ -11,6 +11,7 @@ import ResultPage from "./components/ResultPage/ResultPage";
 import LogInAndRegisterForm from "./components/LoginAndRegister";
 import ResultPageStudent from "./components/ResultPageStudent/ResultPageStudent";
 import JoinedClassesStudent from "./components/JoinedClassesStudent/JoinedClassesStudent";
+import MultiChart from "./components/MultiChart/MultiChart";
 
 function App() {
   const user = useSelector((state) => state.auth.login?.currentUser);

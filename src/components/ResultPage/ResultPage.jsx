@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { getListScoreOfStudentBySubject, getQuizAvgScore } from '../../api/ResultRequests';
+import MultiChart from '../MultiChart/MultiChart';
 import SelectTypeField from '../SelectTypeField/SelectTypeField';
 import StudentChart from '../StudentChart/StudentChart';
 import StudentRecord from '../StudentRecord/StudentRecord';
@@ -35,11 +36,17 @@ const ResultPage = () => {
         }
     }
 
+    const handleSubjectSearch = () => {
+        navigate(`multiChart`)
+    }
+
     const listScore = useSelector(state => state.results.listScoreBySubject);
 
     return (
         <div className='result__container'>
             <div className='result__input'>
+                {/* <div> */}
+
                 <TextField
                     className="result__search"
                     id="outlined-search"
@@ -57,11 +64,29 @@ const ResultPage = () => {
                 >
                     Search
                 </Button>
+                {/* </div> */}
+            </div>
+            <div>
+                <TextField
+                    className="result__search"
+                    id="outlined-search"
+                    label="Enter Subject"
+                    type="search"
+                    onChange={(e) => setSubject(e.target.value)}
+                />
+                <Button
+                    className="result__search__btn"
+                    onClick={handleSubjectSearch}
+                    disabled={subject === '' ? true : false}
+                >
+                    Search
+                </Button>
             </div>
             {/* <StudentChart /> */}
             <Routes>
                 <Route path='Table' element={<StudentRecord listStudentScore={listScore} />} />
                 <Route path='BarChart' element={<StudentChart />} />
+                <Route path="multiChart" element={<MultiChart subject={subject} />} />
             </Routes>
         </div>
     );

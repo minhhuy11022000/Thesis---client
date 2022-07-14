@@ -16,6 +16,15 @@ export const addNewQuestion = async (question, dispatch) => {
   }
 };
 
+export const addMultipleQuestions = async (listOfQuestions) => {
+  try {
+    await axios.post("/questions/multiple", listOfQuestions);
+    console.log(listOfQuestions);
+  } catch (err) {
+    console.log({ error: err });
+  }
+};
+
 export const getAllQuestions = async (subject, dispatch) => {
   dispatch(getAllQuestionsStart());
   try {

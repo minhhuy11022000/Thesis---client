@@ -7,6 +7,7 @@ import QuestionModal from "../QuestionModal/QuestionModal";
 import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from "react-redux";
 import { getAllQuestions } from "../../api/QuestionRequests";
+import UploadExcel from "../UploadExcel/UploadExcel";
 
 const QuestionPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +39,9 @@ const QuestionPage = () => {
                         onClick={() => setIsModalOpen(!isModalOpen)}
                     />
                     {isModalOpen && <QuestionModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />}
-
+                    <div>
+                        <UploadExcel />
+                    </div>
                 </div>
                 <div className="question__page__right__list">
                     <QuestionList subject={subject} />
