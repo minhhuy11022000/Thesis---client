@@ -25,7 +25,7 @@ export const questionsSlice = createSlice({
       state.pending = false;
       state.error = false;
     },
-    createNewQuestion: (state, action) => {
+    createNewQuestion: (state) => {
       state.pending = false;
       state.error = false;
     },

@@ -8,19 +8,20 @@ import './ResultPageStudent.scss';
 import { getPersonalScore } from '../../api/ResultRequests';
 
 const ResultPageStudent = () => {
-    const [subject, setSubject] = useState('');
+    const [classCode, setClassCode] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const studentId = useSelector(state => state.auth.login?.currentUser.uni_id)
 
     const handleSearch = (e) => {
-        setSubject((e.target.value).toUpperCase());
+        setClassCode(e.target.value);
     }
 
     const handleSubmitSearch = () => {
-        navigate(`${subject}`)
-        getPersonalScore(subject, studentId, dispatch);
+        navigate(`${classCode}`)
+        getPersonalScore(classCode, studentId, dispatch);
+        // setClassCode('')
     }
 
     return (
@@ -28,19 +29,20 @@ const ResultPageStudent = () => {
             <TextField
                 className="result__search"
                 id="outlined-search"
-                label="Enter subject"
+                label="Enter Class Code"
                 type="search"
+                // value={classCode}
                 onChange={handleSearch}
             />
             <Button
                 className="result__search__btn"
                 onClick={handleSubmitSearch}
-                disabled={subject === '' ? true : false}
+                disabled={classCode === '' ? true : false}
             >
                 Search
             </Button>
             <Routes>
-                {subject && <Route path={`${subject}`} element={<StudentResultPersonal subject={subject} studentId={studentId} />} />}
+                {classCode && <Route path={`${classCode}`} element={<StudentResultPersonal classCode={classCode} studentId={studentId} />} />}
             </Routes>
         </div>
     );

@@ -1,8 +1,21 @@
 .result__container {
     margin: auto;
 
+    .result__small__container {
+        display: flex;
+
+        .search_block {
+            margin-left: 200px;
+        }
+    }
+
     .result__input {
         display: flex;
+    }
+
+    .description {
+        margin-top: 10px;
+        margin-left: 20px;
     }
 
     .result__search {

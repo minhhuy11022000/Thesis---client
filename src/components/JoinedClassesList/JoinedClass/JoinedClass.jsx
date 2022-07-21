@@ -12,6 +12,7 @@ const JoinedClasses = ({ classData }) => {
                         <h2>{classData.class_name}</h2>
                     </Link>
                     <p className="joined__section">{classData.section}</p>
+                    <p className="joined__section">{classData?.day_of_week}</p>
                     <p className="joined__room">{classData.room}</p>
                 </div>
             </div>
