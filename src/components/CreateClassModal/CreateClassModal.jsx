@@ -32,6 +32,7 @@ const style = {
 const CreateClassModal = ({ openCreateClass, setOpenCreateClass, lecturerId }) => {
     const [className, setClassName] = useState('');
     const [subject, setSubject] = useState('');
+    const [dayOfWeek, setDayOfWeek] = useState('');
     const [section, setSection] = useState('');
     const [room, setRoom] = useState('');
     const dispatch = useDispatch();
@@ -43,7 +44,8 @@ const CreateClassModal = ({ openCreateClass, setOpenCreateClass, lecturerId }) =
     const handleSubmiteCreateClass = () => {
         const newClass = {
             class_name: className,
-            section: section,
+            section: `Semester ` + section,
+            day_of_week: dayOfWeek,
             room: room,
             subject: subject,
             lecturer_id: lecturerId
@@ -81,9 +83,16 @@ const CreateClassModal = ({ openCreateClass, setOpenCreateClass, lecturerId }) =
                         <TextField
                             className='form_element'
                             required
-                            label="Section"
+                            label="Semester"
                             value={section}
                             onChange={(e) => setSection(e.target.value)}
+                        />
+                        <TextField
+                            className='form_element'
+                            required
+                            label="Day Of Week"
+                            value={dayOfWeek}
+                            onChange={(e) => setDayOfWeek(e.target.value)}
                         />
                         <TextField
                             className='form_element'

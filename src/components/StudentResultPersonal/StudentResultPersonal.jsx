@@ -9,12 +9,13 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import './StudentResultPersonal.scss'
 
-const StudentResultPersonal = ({ subject, studentId }) => {
+const StudentResultPersonal = ({ classCode, studentId }) => {
 
     const pendingRequestListScore = useSelector(state => state.results.pending);
     const personalScore = useSelector(state => state.results?.studentPersonalScore.grade)
     const avgScore = useSelector(state => state.results?.studentPersonalScore.avg_score)
-    const errorRequestScore = useSelector(state => state.results.error);
+    const subject = useSelector(state => state.results?.studentPersonalScore.subject)
+    const errorRequestScore = useSelector(state => state.results?.error);
 
     const handleAvgScoreColor = (avgScore > 80) ? 'green' : (avgScore > 50) ? 'yellow' : 'red'
 
@@ -33,8 +34,9 @@ const StudentResultPersonal = ({ subject, studentId }) => {
     }
     return (
         <div>
-            <Typography align="center" variant='h3'>{subject}</Typography>
             <Typography align="center" variant='h4'>Student ID: {studentId}</Typography>
+            <Typography align="center" variant='h5'>Subject: {subject}</Typography>
+            <Typography align="center" variant='h5'>Class Code: {classCode}</Typography>
             <div className="personal_score_table" >
                 <TableContainer component={Paper}>
                     <Table sx={{ maxWidth: 300 }} aria-label="simple table">

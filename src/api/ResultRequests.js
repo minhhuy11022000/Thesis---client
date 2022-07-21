@@ -28,10 +28,12 @@ export const getListScoreOfStudentBySubject = async (subject, dispatch) => {
   }
 };
 
-export const getPersonalScore = async (subject, studentId, dispatch) => {
+export const getPersonalScore = async (class_code, studentId, dispatch) => {
   dispatch(getScoreStart());
   try {
-    const res = await axios.post(`/results/${studentId}`, { subject: subject });
+    const res = await axios.post(`/results/${studentId}`, {
+      class_code,
+    });
     dispatch(getStudentPersonalScore(res.data));
   } catch (err) {
     dispatch(getScoreError());

@@ -2,7 +2,7 @@ export const studentRecordByClass = [
   {
     id: 1,
     subject: "OOP",
-    class_code: "123",
+    class_code: "627b9c44221b303ede451dbb",
     result: [
       { quiz_name: "Quiz 1", avg: 80 },
       { quiz_name: "Quiz 2", avg: 60 },
@@ -14,13 +14,62 @@ export const studentRecordByClass = [
   {
     id: 1,
     subject: "OOP",
-    class_code: "456",
+    class_code: "62b1f285bf0238282827d1fe",
     result: [
       { quiz_name: "Quiz 1", avg: 40 },
       { quiz_name: "Quiz 2", avg: 60 },
       { quiz_name: "Quiz 3", avg: 80 },
       // { quiz_name: "Quiz 4", avg: 40 },
       // { quiz_name: "Quiz 5", avg: 75.5 },
+    ],
+  },
+];
+
+const newData = [
+  {
+    class_code: "123",
+    results: [
+      {
+        avg: 75,
+        length: 3,
+        quiz_name: "Quiz 1",
+        totalScore: 225,
+      },
+      {
+        avg: 65,
+        length: 3,
+        quiz_name: "Quiz 2",
+        totalScore: 195,
+      },
+      {
+        avg: 82.5,
+        length: 2,
+        quiz_name: "Quiz 3",
+        totalScore: 165,
+      },
+    ],
+  },
+  {
+    class_code: "456",
+    results: [
+      {
+        avg: 58.333333333333336,
+        length: 3,
+        quiz_name: "Quiz 3",
+        totalScore: 175,
+      },
+      {
+        avg: 30,
+        length: 2,
+        quiz_name: "Quiz 1",
+        totalScore: 60,
+      },
+      {
+        avg: 55,
+        length: 2,
+        quiz_name: "Quiz 2",
+        totalScore: 110,
+      },
     ],
   },
 ];

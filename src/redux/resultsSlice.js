@@ -5,7 +5,7 @@ export const resultsSlice = createSlice({
   initialState: {
     listScoreByName: [],
     listScoreBySubject: {},
-    listAvgScore: {},
+    listAvgScore: [],
     studentPersonalScore: {},
     pending: false,
     error: false,

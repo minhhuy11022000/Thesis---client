@@ -70,13 +70,13 @@ const StudentRecord = ({ listStudentScore }) => {
                     {listStudentScore?.list_score.map(row => {
                         return (
                             <TableRow
-                                key={row.student_id}
+                                key={row?.student_id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope='row'>{row.student_id}</TableCell>
+                                <TableCell component="th" scope='row'>{row?.student_id}</TableCell>
                                 {row.results.map(record => (
-                                    <TableCell key={record._id} align='right'>
-                                        {record.grade}
+                                    <TableCell key={record?._id} align='right'>
+                                        {record?.grade}
                                     </TableCell>
                                 ))}
                             </TableRow>
