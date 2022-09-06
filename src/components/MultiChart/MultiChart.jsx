@@ -72,7 +72,7 @@ const MultiChart = ({ subject }) => {
                                         data: classData?.results.map(record => record.avg),
                                         backgroundColor: [
                                             "rgba(75, 192, 192, 1)",
-                                            "#ecF0F1",
+                                            "#e389b9",
                                             "#50AF95",
                                             "#f3ba2f",
                                             "#2a71d0",

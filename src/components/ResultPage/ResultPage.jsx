@@ -1,11 +1,10 @@
-import { Alert, Button, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { getListScoreOfStudentBySubject, getQuizAvgScore } from '../../api/ResultRequests';
 import MultiChart from '../MultiChart/MultiChart';
-import SelectTypeField from '../SelectTypeField/SelectTypeField';
 import StudentChart from '../StudentChart/StudentChart';
 import StudentRecord from '../StudentRecord/StudentRecord';
 import './ResultPage.scss';
@@ -19,7 +18,6 @@ const ResultPage = () => {
 
     const handleSearch = (e) => {
         setClassCode((e.target.value).toUpperCase());
-        // console.log((e.target.value).toUpperCase());
     }
 
     // useEffect(() => {
