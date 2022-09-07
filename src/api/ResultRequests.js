@@ -10,7 +10,7 @@ import {
 export const submitStudentResult = async (studentInfo) => {
   try {
     const res = await axios.post(`/results`, studentInfo);
-    console.log(res);
+    console.log(studentInfo);
   } catch (err) {
     console.log(err);
   }

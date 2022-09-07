@@ -19,7 +19,7 @@ const QuizPage = () => {
     const user = useSelector(state => state.auth.login?.currentUser);
 
     const subject = classData.subject;
-    console.log(subject)
+    // console.log(subject)
     const quizData = useSelector(state => state.quizzes?.selectedQuiz);
 
     useEffect(() => {
@@ -30,27 +30,31 @@ const QuizPage = () => {
     console.log(quizData);
 
     const [questionIndex, setQuestionIndex] = useState(0);
+    const [scoreData, setScoreData] = useState(1)
 
     const handleClickAnswer = (e) => {
-        var scoreData = 0;
+        // let scoreData = 0;
         const question = quizData.questions[questionIndex];
-        console.log(scoreData);
         if (e.target.textContent === question.correct_answer) {
-            scoreData = scoreData + 1;
+            setScoreData(scoreData + 1)
+            console.log(scoreData);
+            console.log(true)
         }
         if (questionIndex + 1 < quizData.questions.length) {
             setQuestionIndex(questionIndex + 1);
         }
         else {
             navigate(`/classes/student`);
-            submitStudentResult({
+            const studentInfo = {
                 class_name: classData.class_name,
-                class_code: classData.class_code,
-                student_id: user?.uni_id,
+                class_code: classData._id,
+                student_id: user.uni_id,
                 subject: classData.subject,
                 quiz_name: quizData.quiz_name,
-                grade: scoreData * 20
-            })
+                grade: (scoreData * 100 / quizData.questions.length).toFixed(2)
+            }
+            console.log(studentInfo)
+            submitStudentResult(studentInfo)
         }
     }
 
